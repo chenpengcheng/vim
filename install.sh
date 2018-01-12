@@ -17,3 +17,7 @@ cd $BUNDLE_DIR
 for plugin in $PLUGINS
     do git clone $plugin
 done
+
+cd -
+
+cp -R .vim* $HOME/
