@@ -45,18 +45,23 @@ let g:fzf_layout = { 'down': '~20%' }
 
 " NERDTree
 nmap <F12> :NERDTreeToggle<CR>
-let g:NERDTreeWinPos = 'right'
+let NERDTreeBookmarksFile = '/tmp/.NERDTreeBookmarks'
+let NERDTreeMinimalUI = 1
+let NERDTreeShowLineNumbers=1
+let NERDTreeShowBookmarks = 1
+let NERDTreeWinPos = 'right'
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
 
 " Tagbar
 nmap <F1> :TagbarToggle<CR>
+let g:tagbar_autofocus = 1
 let g:tagbar_autoshowtag = 1
 let g:tagbar_compact = 1
 let g:tagbar_foldlevel = 0
 let g:tagbar_left = 1
-let g:tagbar_show_linenumbers = 2
+let g:tagbar_show_linenumbers = 1
 let g:tagbar_type_go = {
 	\ 'ctagstype' : 'go',
 	\ 'kinds'     : [
