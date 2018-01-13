@@ -6,22 +6,29 @@ PLUGINS=" \
     https://github.com/scrooloose/nerdtree.git \
     https://github.com/majutsushi/tagbar.git \
     https://github.com/junegunn/fzf.vim.git \
-    https://github.com/romainl/vim-qf.git \
-    https://github.com/vim-syntastic/syntastic.git \
+    https://github.com/Valloric/YouCompleteMe.git \
     https://github.com/fatih/vim-go.git \
     https://github.com/tpope/vim-fugitive.git \
+    https://github.com/airblade/vim-gitgutter.git \
+    https://github.com/vim-syntastic/syntastic.git \
+    https://github.com/vim-airline/vim-airline \
+    https://github.com/romainl/vim-qf.git \
 "
 
 cd $BUNDLE_DIR
 for plugin in $PLUGINS
     do git clone $plugin
 done
-
 cd -
+
 cp fzf/tags.py .vim/bundle/fzf.vim/bin/
 patch -p1 < fzf/001-python-tags.patch
-
 cp nerdtree/custom.vim .vim/bundle/nerdtree/nerdtree_plugin/
+
+cd .vim/bundle/YouCompleteMe/
+git submodule update --init --recursive
+./install.py --all
+cd -
 
 rm -fr /tmp/.vim*
 mv $HOME/.vim* /tmp/
@@ -29,3 +36,4 @@ cp -R .vim* $HOME/
 
 cd .vim/bundle/
 rm -fr fzf.vim/ nerdtree/ syntastic/ tagbar/ vim-*
+cd -

@@ -63,33 +63,37 @@ let g:tagbar_hide_nonpublic = 1
 let g:tagbar_left = 1
 let g:tagbar_show_linenumbers = 1
 let g:tagbar_type_go = {
-	\ 'ctagstype' : 'go',
-	\ 'kinds'     : [
-		\ 'p:package',
-		\ 'i:imports:1',
-		\ 'c:constants',
-		\ 'v:variables',
-		\ 't:types',
-		\ 'n:interfaces',
-		\ 'w:fields',
-		\ 'e:embedded',
-		\ 'm:methods',
-		\ 'r:constructor',
-		\ 'f:functions'
-	\ ],
-	\ 'sro' : '.',
-	\ 'kind2scope' : {
-		\ 't' : 'ctype',
-		\ 'n' : 'ntype'
-	\ },
-	\ 'scope2kind' : {
-		\ 'ctype' : 't',
-		\ 'ntype' : 'n'
-	\ },
-	\ 'ctagsbin'  : 'gotags',
-	\ 'ctagsargs' : '-sort -silent'
+    \ 'ctagstype' : 'go',
+    \ 'kinds'     : [
+        \ 'p:package',
+        \ 'i:imports:1',
+        \ 'c:constants',
+        \ 'v:variables',
+        \ 't:types',
+        \ 'n:interfaces',
+        \ 'w:fields',
+        \ 'e:embedded',
+        \ 'm:methods',
+        \ 'r:constructor',
+        \ 'f:functions'
+    \ ],
+    \ 'sro' : '.',
+    \ 'kind2scope' : {
+        \ 't' : 'ctype',
+        \ 'n' : 'ntype'
+    \ },
+    \ 'scope2kind' : {
+        \ 'ctype' : 't',
+        \ 'ntype' : 'n'
+    \ },
+    \ 'ctagsbin'  : 'gotags',
+    \ 'ctagsargs' : '-sort -silent'
 \ }
 autocmd FileType * nested :call tagbar#autoopen(0)
+
+" airline
+let g:airline_section_y = ''
+let g:airline#extensions#tabline#enabled = 1
 
 " vim-qf
 nmap <F4> <Plug>qf_qf_toggle
