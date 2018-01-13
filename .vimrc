@@ -49,6 +49,7 @@ let NERDTreeMinimalUI = 1
 let NERDTreeShowLineNumbers=1
 let NERDTreeShowBookmarks = 1
 let NERDTreeWinPos = 'right'
+let NERDTreeWinSize = 40
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * NERDTree
 
