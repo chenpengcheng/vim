@@ -30,7 +30,7 @@ highlight LineNr ctermfg=darkmagenta
 " ag
 nmap <F3> :grep! <cword><CR>:botright cw<CR>
 if executable('ag')
-  set grepprg=ag\ --nogroup\ --nocolor\ -p\ ~/.ignore
+  set grepprg=ag\ --nogroup\ --nocolor\ -p\ ~/.vim/agignore
 endif
 
 " fzf
