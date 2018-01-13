@@ -16,6 +16,7 @@ set incsearch
 set autoindent
 set autoread
 set shm+=A
+set fillchars+=vert:\ 
 
 if has("gui_running")
     set guioptions-=T
