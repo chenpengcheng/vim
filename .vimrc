@@ -3,17 +3,18 @@ execute pathogen#infect()
 syntax on
 filetype plugin indent on
 
+set t_Co=256
 set clipboard=unnamed
 set ff=unix
 set number
 set expandtab
 set tabstop=4
 set shiftwidth=4
+set cursorline
 set hlsearch
 set incsearch
 set autoindent
 set autoread
-set autochdir
 set shm+=A
 
 if has("gui_running")
@@ -23,6 +24,7 @@ if has("gui_running")
 endif
 
 colorscheme ron
+highlight CursorLine cterm=bold ctermbg=brown
 highlight LineNr ctermfg=darkmagenta
 
 " ag
@@ -35,24 +37,20 @@ endif
 nmap <F11> :Files<CR>
 nmap <F2> :Tags<CR>
 set rtp+=~/.fzf
-if argc() == 1 && isdirectory(argv()[0])
-    let &tags=fnamemodify(argv()[0], ':p').'tags'
-else
-    let &tags=system("git rev-parse --show-toplevel | tr -d '\\n'")."/tags"
-endif
-set tags+=",tags"
 let g:fzf_layout = { 'down': '~20%' }
 
 " NERDTree
+nmap <F10> :NERDTreeFind<CR>
 nmap <F12> :NERDTreeToggle<CR>
 let NERDTreeBookmarksFile = '/tmp/.NERDTreeBookmarks'
+let NERDTreeChDirMode = 2
+let NERDTreeHighlightCursorline = 1
 let NERDTreeMinimalUI = 1
 let NERDTreeShowLineNumbers=1
 let NERDTreeShowBookmarks = 1
 let NERDTreeWinPos = 'right'
 autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
+autocmd VimEnter * NERDTree
 
 " Tagbar
 nmap <F1> :TagbarToggle<CR>
@@ -60,6 +58,7 @@ let g:tagbar_autofocus = 1
 let g:tagbar_autoshowtag = 1
 let g:tagbar_compact = 1
 let g:tagbar_foldlevel = 0
+let g:tagbar_hide_nonpublic = 1
 let g:tagbar_left = 1
 let g:tagbar_show_linenumbers = 1
 let g:tagbar_type_go = {
