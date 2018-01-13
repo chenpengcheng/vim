@@ -21,6 +21,8 @@ cd -
 cp fzf/tags.py .vim/bundle/fzf.vim/bin/
 patch -p1 < fzf/001-python-tags.patch
 
+cp nerdtree/custom.vim .vim/bundle/nerdtree/nerdtree_plugin/
+
 rm -fr /tmp/.vim*
 mv $HOME/.vim* /tmp/
 cp -R .vim* $HOME/
