@@ -27,7 +27,7 @@ cp nerdtree/custom.vim .vim/bundle/nerdtree/nerdtree_plugin/
 
 cd .vim/bundle/YouCompleteMe/
 git submodule update --init --recursive
-./install.py --all
+./install.py --clang-completer --go-completer --js-completer
 cd -
 
 rm -fr /tmp/.vim*
@@ -35,5 +35,5 @@ mv $HOME/.vim* /tmp/
 cp -R .vim* $HOME/
 
 cd .vim/bundle/
-rm -fr fzf.vim/ nerdtree/ syntastic/ tagbar/ vim-*
+rm -fr YouCompleteMe/ fzf.vim/ nerdtree/ syntastic/ tagbar/ vim-*
 cd -
