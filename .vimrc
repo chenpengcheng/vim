@@ -27,6 +27,8 @@ colorscheme ron
 highlight CursorLine cterm=bold ctermbg=brown
 highlight LineNr ctermfg=darkmagenta
 
+nmap <Tab> :bnext<CR>
+
 " ag
 nmap <F3> :grep! <cword><CR>:botright cw<CR>
 if executable('ag')
