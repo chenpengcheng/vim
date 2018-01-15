@@ -45,14 +45,14 @@ function! BufferNext()
 endfunction
 
 " ag
-nmap <F3> :grep! <cword><CR>:botright cw<CR>
+nmap <F4> :grep! <cword><CR>:botright cw<CR>
 if executable('ag')
   set grepprg=ag\ --nogroup\ --nocolor\ -p\ ~/.vim/agignore
 endif
 
 " fzf
 nmap <F10> :Files<CR>
-nmap <F2> :Tags<CR>
+nmap <F3> :Tags<CR>
 set rtp+=~/.fzf
 let g:fzf_layout = { 'down': '~20%' }
 
@@ -72,6 +72,7 @@ autocmd VimEnter * NERDTree
 
 " Tagbar
 nmap <F1> :TagbarToggle<CR>
+nmap <F2> :call TagbarFind()<CR>
 let g:tagbar_autofocus = 1
 let g:tagbar_autoshowtag = 1
 let g:tagbar_compact = 1
@@ -107,13 +108,20 @@ let g:tagbar_type_go = {
     \ 'ctagsargs' : '-sort -silent'
 \ }
 autocmd FileType * nested :call tagbar#autoopen(0)
+function! TagbarFind()
+    let l:buffer_name = expand( '%' )
+    if l:buffer_name !~ '__Tagbar__' && l:buffer_name !~ 'NERD'
+        execute 'TagbarShowTag'
+        execute 'wincmd p'
+    endif
+endfunction
 
 " airline
 let g:airline_section_y = ''
 let g:airline#extensions#tabline#enabled = 1
 
 " vim-qf
-nmap <F4> <Plug>qf_qf_toggle
+nmap <F5> <Plug>qf_qf_toggle
 nmap <C-p> <Plug>qf_qf_previous
 nmap <C-n>  <Plug>qf_qf_next
 
