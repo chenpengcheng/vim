@@ -32,9 +32,13 @@ highlight LineNr ctermfg=darkmagenta
 nmap <Tab> :call BufferNext()<CR>
 
 function! BufferNext()
-	let l:name = expand( '%' )
-	if l:name =~ '__Tagbar__' || l:name =~ 'NERD'
+    let l:buffer_name = expand( '%' )
+    let l:num_buffers = len(filter(range(1, bufnr('$')), 'buflisted(v:val)'))
+
+    if l:buffer_name =~ '__Tagbar__' || l:buffer_name =~ 'NERD'
         execute 'wincmd w'
+    elseif l:num_buffers <= 1
+        execute 'NERDTreeFind'
     else
         execute 'bnext'
     endif
