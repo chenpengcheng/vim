@@ -28,7 +28,17 @@ colorscheme ron
 highlight CursorLine cterm=bold ctermbg=brown
 highlight LineNr ctermfg=darkmagenta
 
-nmap <Tab> :bnext<CR>
+" buffer
+nmap <Tab> :call BufferNext()<CR>
+
+function! BufferNext()
+	let l:name = expand( '%' )
+	if l:name =~ '__Tagbar__' || l:name =~ 'NERD'
+        execute 'wincmd w'
+    else
+        execute 'bnext'
+    endif
+endfunction
 
 " ag
 nmap <F3> :grep! <cword><CR>:botright cw<CR>
@@ -37,13 +47,13 @@ if executable('ag')
 endif
 
 " fzf
-nmap <F11> :Files<CR>
+nmap <F10> :Files<CR>
 nmap <F2> :Tags<CR>
 set rtp+=~/.fzf
 let g:fzf_layout = { 'down': '~20%' }
 
 " NERDTree
-nmap <F10> :NERDTreeFind<CR>
+nmap <F11> :NERDTreeFind<CR>
 nmap <F12> :NERDTreeToggle<CR>
 let NERDTreeBookmarksFile = '/tmp/.NERDTreeBookmarks'
 let NERDTreeChDirMode = 2
