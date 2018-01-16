@@ -40,7 +40,7 @@ function! SafeExecute(command)
         elseif l:buffer_name =~ 'NERD'
             execute 'wincmd h'
         endif
-        execute 'normal! ' . a:command . '\<CR>'
+        execute 'normal! ' . a:command . "\<CR>"
     endif
 endfunction
 
