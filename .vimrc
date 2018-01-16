@@ -16,6 +16,7 @@ set incsearch
 set autoindent
 set autoread
 set shm+=A
+set updatetime=200
 set fillchars+=vert:\ 
 
 if has("gui_running")
@@ -39,7 +40,7 @@ function! SafeExecute(command)
         elseif l:buffer_name =~ 'NERD'
             execute 'wincmd h'
         endif
-        execute 'normal! ' . a:command . "\<CR>"
+        execute 'normal! ' . a:command . '\<CR>'
     endif
 endfunction
 
@@ -88,7 +89,7 @@ autocmd VimEnter * NERDTree
 
 " Tagbar
 nmap <silent> <F1> :TagbarToggle<CR>
-nmap <silent> <F2> :call SafeExecute(':call TagbarFind()')<CR>
+nmap <silent> <F2> :call TagbarFind()<CR>
 let g:tagbar_autofocus = 1
 let g:tagbar_autoshowtag = 1
 let g:tagbar_compact = 1
@@ -125,8 +126,11 @@ let g:tagbar_type_go = {
 \ }
 autocmd FileType * nested :call tagbar#autoopen(0)
 function! TagbarFind()
-    execute 'TagbarShowTag'
-    execute 'wincmd h'
+    let l:buffer_name = expand('%')
+    if l:buffer_name !~ '__Tagbar__'
+        call SafeExecute( ':TagbarShowTag' )
+        execute 'wincmd h'
+    endif
 endfunction
 
 " airline
