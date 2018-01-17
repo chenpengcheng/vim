@@ -29,6 +29,7 @@ colorscheme ron
 highlight CursorLine cterm=bold ctermbg=brown
 highlight LineNr ctermfg=darkmagenta
 
+" custom
 function! SafeExecute(command)
     let l:buffer_name = expand('%')
     let l:num_buffers = len(filter(range(1, bufnr('$')), 'buflisted(v:val)'))
@@ -41,6 +42,19 @@ function! SafeExecute(command)
             execute 'wincmd h'
         endif
         execute 'normal! ' . a:command . "\<CR>"
+    endif
+endfunction
+
+function! BufferPrev()
+    let l:buffer_name = expand( '%' )
+    let l:num_buffers = len(filter(range(1, bufnr('$')), 'buflisted(v:val)'))
+
+    if empty(l:buffer_name) || l:buffer_name =~ '__Tagbar__' || l:buffer_name =~ 'NERD'
+        execute 'wincmd W'
+    elseif l:num_buffers <= 1
+        execute 'NERDTreeFind'
+    else
+        execute 'bNext'
     endif
 endfunction
 
@@ -59,7 +73,7 @@ endfunction
 
 " buffer
 nmap <silent> <Tab> :call BufferNext()<CR>
-
+nmap <silent> <Esc>[Z :call BufferPrev()<CR>
 
 " ag
 nmap <silent> <F4> :grep! <cword><CR>:botright cw<CR>
