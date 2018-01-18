@@ -3,18 +3,41 @@
 from collections import defaultdict
 import argparse, sys
 
+global_kinds = [ 'i', 'n', 'c', 't', 'f' ]
+member_kinds = [ 'r', 'e', 'm', 'w' ]
+variable_kinds = [ 'v', 'c', 's', 'u', 'd', 'g' ]
+ignore_kinds = [ 'p', 'l', 'a' ]
+
 def tabrize( s, width ):
     if len( s ) < width:
         n = ( width - len( s ) )
         s += '\t' * ( n / 8 + ( 1 if n % 8 else 0 ) )
     return s
 
-def tags_handler( lines ):
-    global_types = [ 'n', 't', 'f' ]
-    member_types = [ 'r', 'e', 'm', 'w' ]
-    variable_types = [ 'v', 'c' ]
-    ignore_types = [ 'p', 'i' ]
+def get_name( kind, fields ):
+    name = fields[ 0 ]
+    if kind in member_kinds:
+        try:
+            name = fields[ 5 ].split( ':' )[ 1 ] + ':' + name
+        except IndexError:
+            try:
+                name = fields[ -1 ].split( ':' )[ 1 ] + ':' + name
+            except IndexError:
+                pass
+    return name
 
+def get_kind( fields ):
+    path, kind = fields[ 1 ], fields[ 3 ]
+    if path.endswith( '.go' ):
+        if kind == 'c':
+            kind = 'v'
+        elif kind == 'n':
+            kind = 'i'
+        elif kind == 'i':
+            kind = 'a'
+    return kind
+
+def handle_tags( lines ):
     results = defaultdict( list )
 
     for line in lines:
@@ -23,30 +46,23 @@ def tags_handler( lines ):
                 len( fields[ 0 ] ) < 3 or len( line ) > 512:
             continue
 
-        name, kind = fields[ 0 ], fields[ 3 ]
+        kind = get_kind( fields )
+        name = get_name( kind, fields )
         sign = fields[ -1 ].split( ':' )[ -1 ] if len( fields[ -1 ] ) > 1 else ''
         sign = tabrize( sign, 16 )
-        if kind in member_types:
-            try:
-                name = fields[ 5 ].split( ':' )[ 1 ] + ':' + name
-            except IndexError:
-                try:
-                    name = fields[ -1 ].split( ':' )[ 1 ] + ':' + name
-                except IndexError:
-                    pass
         path, loc = tabrize( fields[ 1 ], 24 ), fields[ 2 ]
         if loc.startswith( '/^' ):
             loc = tabrize( loc, 40 )
 
-	if not args.G or (kind in global_types + variable_types):
+	if not args.G or (kind in global_kinds + variable_kinds):
 	    results[ kind ].append( '\t'.join(
 		[ name.ljust( 32 ), path, loc, kind, sign, tags ]
             ) )
 
-        if kind not in global_types + member_types + variable_types + ignore_types:
-            print kind
+        if kind not in global_kinds + member_kinds + variable_kinds + ignore_kinds:
+            print 'Unknown type:', kind, line
 
-    for kind in global_types + member_types + variable_types:
+    for kind in global_kinds + member_kinds + variable_kinds:
         for line in results[ kind ]:
             print line
 
@@ -60,5 +76,5 @@ for tags in args.tags_list:
         lines = f.readlines()
         for i, line in enumerate( lines ):
             if not line.startswith( '!' ):
-                tags_handler( lines[ i: ] )
+                handle_tags( lines[ i: ] )
                 break
