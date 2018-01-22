@@ -3,7 +3,7 @@
 from collections import defaultdict
 import argparse, sys
 
-global_kinds = [ 'i', 'n', 'c', 't', 'f' ]
+global_kinds = [ 'i', 'n', 'c', 't', 'f', 'F' ]
 member_kinds = [ 'r', 'e', 'm', 'w' ]
 variable_kinds = [ 'v', 'c', 's', 'u', 'd', 'g' ]
 ignore_kinds = [ 'p', 'l', 'a' ]
@@ -34,6 +34,9 @@ def get_kind( fields ):
         elif kind == 'n':
             kind = 'i'
         elif kind == 'i':
+            kind = 'a'
+    elif path.endswith( '.py' ):
+        if kind == 'i':
             kind = 'a'
     return kind
 
