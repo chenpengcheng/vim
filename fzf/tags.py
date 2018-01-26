@@ -15,7 +15,10 @@ def tabrize( s, width ):
     return s
 
 def get_name( kind, fields ):
-    name = fields[ 0 ]
+    name, path = fields[ 0 ], fields[ 1 ]
+    if path.endswith( '.go' ) and kind == 'm' and fields[ 6 ].startswith( 'ntype' ):
+        fields[ 5 ], fields[ 6 ] = fields[ 6 ], fields[ 5 ]
+
     if kind in member_kinds:
         try:
             name = fields[ 5 ].split( ':' )[ 1 ] + ':' + name

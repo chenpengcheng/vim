@@ -110,6 +110,7 @@ let g:tagbar_compact = 1
 let g:tagbar_foldlevel = 0
 let g:tagbar_hide_nonpublic = 1
 let g:tagbar_left = 1
+let g:tagbar_map_help = '?'
 let g:tagbar_show_linenumbers = 1
 let g:tagbar_type_go = {
     \ 'ctagstype' : 'go',
