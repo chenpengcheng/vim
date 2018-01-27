@@ -29,22 +29,10 @@ colorscheme ron
 highlight CursorLine cterm=bold ctermbg=brown
 highlight LineNr ctermfg=darkmagenta
 
-" custom
-function! SafeExecute(command)
-    let l:buffer_name = expand('%')
-    let l:num_buffers = len(filter(range(1, bufnr('$')), 'buflisted(v:val)'))
-    let l:num_windows = winnr('$')
-
-    if l:num_windows > 1
-        if l:buffer_name =~ '__Tagbar__'
-            execute 'wincmd l'
-        elseif l:buffer_name =~ 'NERD'
-            execute 'wincmd h'
-        endif
-        execute 'normal! ' . a:command . "\<CR>"
-    endif
-endfunction
-
+" buffer
+nmap <silent> <Tab> :call BufferNext()<CR>
+nmap <silent> <Esc>[Z :call BufferPrev()<CR>
+nmap <silent> <C-x> :call BufferClose()<CR>
 function! BufferPrev()
     let l:buffer_name = expand( '%' )
     let l:num_buffers = len(filter(range(1, bufnr('$')), 'buflisted(v:val)'))
@@ -71,9 +59,14 @@ function! BufferNext()
     endif
 endfunction
 
-" buffer
-nmap <silent> <Tab> :call BufferNext()<CR>
-nmap <silent> <Esc>[Z :call BufferPrev()<CR>
+function! BufferClose()
+    let l:num_buffers = len(filter(range(1, bufnr('$')), 'buflisted(v:val)'))
+
+    if l:num_buffers > 1
+        execute 'bnext'
+        execute 'bd#'
+    endif
+endfunction
 
 " ag
 nmap <silent> <F4> :grep! <cword><CR>:botright cw<CR>
@@ -165,3 +158,19 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_mode_map = { 'passive_filetypes': [ 'java' ] }
 let g:syntastic_python_checkers = [ 'pylint' ]
+
+" custom
+function! SafeExecute(command)
+    let l:buffer_name = expand('%')
+    let l:num_buffers = len(filter(range(1, bufnr('$')), 'buflisted(v:val)'))
+    let l:num_windows = winnr('$')
+
+    if l:num_windows > 1
+        if l:buffer_name =~ '__Tagbar__'
+            execute 'wincmd l'
+        elseif l:buffer_name =~ 'NERD'
+            execute 'wincmd h'
+        endif
+        execute 'normal! ' . a:command . "\<CR>"
+    endif
+endfunction
