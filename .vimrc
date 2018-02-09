@@ -159,6 +159,9 @@ let g:syntastic_check_on_wq = 0
 let g:syntastic_mode_map = { 'passive_filetypes': [ 'java' ] }
 let g:syntastic_python_checkers = [ 'pylint' ]
 
+" vim-go
+let g:go_fmt_command = "goimports"
+
 " custom
 function! SafeExecute(command)
     let l:buffer_name = expand('%')
