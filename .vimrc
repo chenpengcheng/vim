@@ -7,6 +7,7 @@ set t_Co=256
 set clipboard=unnamed
 set ff=unix
 set number
+set backspace=indent,eol,start
 set expandtab
 set tabstop=4
 set shiftwidth=4
