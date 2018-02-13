@@ -56,7 +56,7 @@ def handle_tags( lines ):
         name = get_name( kind, fields )
         sign = fields[ -1 ].split( ':' )[ -1 ] if len( fields[ -1 ] ) > 1 else ''
         sign = tabrize( sign, 16 )
-        path, loc = tabrize( fields[ 1 ], 24 ), fields[ 2 ]
+        path, loc = tabrize( fields[ 1 ], 32 ), fields[ 2 ]
         if loc.startswith( '/^' ):
             loc = tabrize( loc, 40 )
 
