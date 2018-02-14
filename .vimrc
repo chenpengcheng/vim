@@ -61,10 +61,11 @@ function! BufferNext()
 endfunction
 
 function! BufferClose()
+    let l:buffer_name = expand( '%' )
     let l:num_buffers = len(filter(range(1, bufnr('$')), 'buflisted(v:val)'))
 
-    if l:num_buffers > 1
-        execute 'bnext'
+    if l:num_buffers > 1 && l:buffer_name !~ '__Tagbar__' && l:buffer_name !~ 'NERD'
+        execute 'bNext'
         execute 'bd#'
     endif
 endfunction
