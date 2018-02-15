@@ -160,6 +160,7 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_mode_map = { 'passive_filetypes': [ 'java' ] }
 let g:syntastic_python_checkers = [ 'pylint' ]
+let g:syntastic_go_checkers = [ 'govet' ]
 
 " vim-go
 let g:go_fmt_command = "goimports"
