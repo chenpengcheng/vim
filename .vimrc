@@ -85,7 +85,7 @@ let g:fzf_layout = { 'down': '~20%' }
 " NERDTree
 nmap <silent> <F11> :call SafeExecute(':NERDTreeFind')<CR>
 nmap <silent> <F12> :NERDTreeToggle<CR>
-let NERDTreeBookmarksFile = '/tmp/.NERDTreeBookmarks'
+let NERDTreeBookmarksFile = expand('$HOME/.NERDTreeBookmarks')
 let NERDTreeChDirMode = 2
 let NERDTreeHighlightCursorline = 1
 let NERDTreeMinimalUI = 1
