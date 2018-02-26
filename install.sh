@@ -7,6 +7,8 @@ PLUGINS=" \
     https://github.com/majutsushi/tagbar.git \
     https://github.com/junegunn/fzf.vim.git \
     https://github.com/Valloric/YouCompleteMe.git \
+    https://github.com/scrooloose/nerdcommenter.git \
+    https://github.com/godlygeek/tabular.git \
     https://github.com/fatih/vim-go.git \
     https://github.com/tpope/vim-fugitive.git \
     https://github.com/airblade/vim-gitgutter.git \
@@ -35,5 +37,5 @@ mv $HOME/.vim* /tmp/
 cp -R .vim* $HOME/
 
 cd .vim/bundle/
-rm -fr YouCompleteMe/ fzf.vim/ nerdtree/ syntastic/ tagbar/ vim-*
+rm -fr YouCompleteMe/ fzf.vim/ nerdcommenter/ nerdtree/ syntastic/ tabular tagbar/ vim-*
 cd -

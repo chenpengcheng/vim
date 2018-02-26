@@ -30,6 +30,9 @@ colorscheme ron
 highlight CursorLine cterm=bold ctermbg=brown
 highlight LineNr ctermfg=darkmagenta
 
+"leader
+let mapleader = ';'
+
 " buffer
 nmap <silent> <Tab> :call BufferNext()<CR>
 nmap <silent> <Esc>[Z :call BufferPrev()<CR>
