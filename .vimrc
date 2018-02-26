@@ -36,7 +36,7 @@ let mapleader = ';'
 " buffer
 nmap <silent> <Tab> :call BufferNext()<CR>
 nmap <silent> <Esc>[Z :call BufferPrev()<CR>
-nmap <silent> <C-x> :call BufferClose()<CR>
+nmap <silent> <leader>x :call BufferClose()<CR>
 function! BufferPrev()
     let l:buffer_name = expand( '%' )
     let l:num_buffers = len(filter(range(1, bufnr('$')), 'buflisted(v:val)'))
@@ -76,7 +76,7 @@ endfunction
 " ag
 nmap <silent> <F4> :grep! <cword><CR>:botright cw<CR>
 if executable('ag')
-  set grepprg=ag\ --nogroup\ --nocolor\ -p\ ~/.vim/agignore
+  let &grepprg='ag --nogroup --nocolor --width=80 -p ~/.vim/agignore'
 endif
 
 " fzf
@@ -152,7 +152,7 @@ let g:airline_section_y = ''
 let g:airline#extensions#tabline#enabled = 1
 
 " vim-qf
-nmap <silent> <F5> <Plug>qf_qf_toggle
+nmap <silent> <leader>q <Plug>qf_qf_toggle
 nmap <silent> <C-p> <Plug>qf_qf_previous
 nmap <silent> <C-n>  <Plug>qf_qf_next
 
