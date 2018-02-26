@@ -28,6 +28,7 @@ endif
 
 colorscheme ron
 highlight CursorLine cterm=bold ctermbg=brown
+highlight Pmenu ctermfg=cyan ctermbg=black
 highlight LineNr ctermfg=darkmagenta
 
 "leader
