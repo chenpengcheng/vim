@@ -17,7 +17,7 @@ set incsearch
 set autoindent
 set autoread
 set shm+=A
-set updatetime=200
+set updatetime=100
 set fillchars+=vert:\ 
 
 if has("gui_running")
