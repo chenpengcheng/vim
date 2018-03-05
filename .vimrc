@@ -26,6 +26,7 @@ highlight LineNr ctermfg=darkmagenta
 highlight Pmenu ctermfg=cyan ctermbg=black
 highlight PmenuSel cterm=bold ctermfg=blue
 highlight TagbarSignature ctermfg=gray
+highlight TagbarHighlight ctermbg=brown
 
 "leader
 let mapleader = ';'
