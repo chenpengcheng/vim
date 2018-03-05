@@ -1,0 +1,43 @@
+diff --git a/.vim/bundle/tagbar/autoload/tagbar.vim b/.vim/bundle/tagbar/autoload/tagbar.vim
+index 4d5a1f1..872ca46 100644
+--- a/.vim/bundle/tagbar/autoload/tagbar.vim
++++ b/.vim/bundle/tagbar/autoload/tagbar.vim
+@@ -2721,7 +2721,7 @@ function! s:GetNearbyTag(all, forcecurrent, ...) abort
+     for line in range(curline, 1, -1)
+         if has_key(fileinfo.fline, line)
+             let curtag = fileinfo.fline[line]
+-            if a:all || typeinfo.getKind(curtag.fields.kind).stl
++            if a:all || typeinfo.getStatusLine(curtag.fields.kind)
+                 let tag = curtag
+                 break
+             endif
+diff --git a/.vim/bundle/tagbar/autoload/tagbar/prototypes/typeinfo.vim b/.vim/bundle/tagbar/autoload/tagbar/prototypes/typeinfo.vim
+index 1c3f452..06576ba 100644
+--- a/.vim/bundle/tagbar/autoload/tagbar/prototypes/typeinfo.vim
++++ b/.vim/bundle/tagbar/autoload/tagbar/prototypes/typeinfo.vim
+@@ -7,16 +7,20 @@ function! tagbar#prototypes#typeinfo#new(...) abort
+         call extend(newobj, a:1)
+     endif
+ 
+-    let newobj.getKind = function(s:add_snr('s:getKind'))
++    let newobj.getStatusLine = function(s:add_snr('s:getStatusLine'))
+     let newobj.createKinddict = function(s:add_snr('s:createKinddict'))
+ 
+     return newobj
+ endfunction
+ 
+-" s:getKind() {{{1
+-function! s:getKind(kind) abort dict
+-    let idx = self.kinddict[a:kind]
+-    return self.kinds[idx]
++" s:getStatusLine() {{{1
++function! s:getStatusLine(kind) dict
++    if has_key(self.kinddict, a:kind)
++        let idx = self.kinddict[a:kind]
++        return self.kinds[idx].stl
++    else
++        return 0
++    endif
+ endfunction
+ 
+ " s:createKinddict() {{{1

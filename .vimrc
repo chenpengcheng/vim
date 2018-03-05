@@ -20,17 +20,12 @@ set shm+=A
 set updatetime=100
 set fillchars+=vert:\ 
 
-if has("gui_running")
-    set guioptions-=T
-    set lines=80
-    set columns=100
-endif
-
 colorscheme ron
 highlight CursorLine cterm=bold ctermbg=brown
+highlight LineNr ctermfg=darkmagenta
 highlight Pmenu ctermfg=cyan ctermbg=black
 highlight PmenuSel cterm=bold ctermfg=blue
-highlight LineNr ctermfg=darkmagenta
+highlight TagbarSignature ctermfg=gray
 
 "leader
 let mapleader = ';'
@@ -71,7 +66,7 @@ function! BufferClose()
 
     if l:num_buffers > 1 && l:buffer_name !~ '__Tagbar__' && l:buffer_name !~ 'NERD'
         execute 'bNext'
-        execute 'bd#'
+        execute 'bdelete#'
     endif
 endfunction
 
@@ -99,7 +94,9 @@ let NERDTreeShowBookmarks = 1
 let NERDTreeWinPos = 'right'
 let NERDTreeWinSize = 40
 autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * NERDTree
+if  &diff != 1
+    autocmd VimEnter * NERDTree
+endif
 
 " Tagbar
 nmap <silent> <F1> :TagbarToggle<CR>
@@ -107,8 +104,10 @@ nmap <silent> <F2> :call TagbarFind()<CR>
 let g:tagbar_autofocus = 1
 let g:tagbar_autoshowtag = 1
 let g:tagbar_compact = 1
-let g:tagbar_foldlevel = 0
+let g:tagbar_expand = 1
+let g:tagbar_foldlevel = 1
 let g:tagbar_hide_nonpublic = 1
+let g:tagbar_iconchars = ['▸', '▾']
 let g:tagbar_left = 1
 let g:tagbar_map_help = '?'
 let g:tagbar_show_linenumbers = 1
@@ -116,16 +115,15 @@ let g:tagbar_type_go = {
     \ 'ctagstype' : 'go',
     \ 'kinds'     : [
         \ 'p:package',
-        \ 'i:imports:1',
-        \ 'c:constants',
-        \ 'v:variables',
-        \ 't:types',
         \ 'n:interfaces',
+        \ 't:types',
         \ 'w:fields',
         \ 'e:embedded',
-        \ 'm:methods',
         \ 'r:constructor',
-        \ 'f:functions'
+        \ 'm:methods',
+        \ 'f:functions',
+        \ 'v:variables',
+        \ 'c:constants'
     \ ],
     \ 'sro' : '.',
     \ 'kind2scope' : {
@@ -139,7 +137,7 @@ let g:tagbar_type_go = {
     \ 'ctagsbin'  : 'gotags',
     \ 'ctagsargs' : '-sort -silent'
 \ }
-autocmd FileType * nested :call tagbar#autoopen(0)
+autocmd BufRead * nested :call tagbar#autoopen(0)
 function! TagbarFind()
     let l:buffer_name = expand('%')
     if l:buffer_name !~ '__Tagbar__'
@@ -154,7 +152,7 @@ let g:airline_section_y = ''
 let g:airline#extensions#tabline#enabled = 1
 
 " vim-qf
-nmap <silent> <leader>q <Plug>qf_qf_toggle
+nmap <silent> <F5> <Plug>qf_qf_toggle
 nmap <silent> <C-p> <Plug>qf_qf_previous
 nmap <silent> <C-n>  <Plug>qf_qf_next
 
@@ -185,3 +183,5 @@ function! SafeExecute(command)
         execute 'normal! ' . a:command . "\<CR>"
     endif
 endfunction
+
+" XXX function! SafeBuffer(name)
