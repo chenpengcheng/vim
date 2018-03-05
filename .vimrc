@@ -27,6 +27,7 @@ highlight Pmenu ctermfg=cyan ctermbg=black
 highlight PmenuSel cterm=bold ctermfg=blue
 highlight TagbarSignature ctermfg=gray
 highlight TagbarHighlight ctermbg=brown
+highlight EndOfBuffer ctermfg=black
 
 "leader
 let mapleader = ';'
