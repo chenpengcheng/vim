@@ -5,16 +5,19 @@ BUNDLE_DIR=".vim/bundle"
 PLUGINS=" \
     https://github.com/scrooloose/nerdtree.git \
     https://github.com/majutsushi/tagbar.git \
+    https://github.com/farmergreg/vim-lastplace.git \
+    https://github.com/mhinz/vim-startify.git \
     https://github.com/junegunn/fzf.vim.git \
+    https://github.com/justinmk/vim-sneak.git \
     https://github.com/Valloric/YouCompleteMe.git \
-    https://github.com/scrooloose/nerdcommenter.git \
     https://github.com/godlygeek/tabular.git \
-    https://github.com/fatih/vim-go.git \
+    https://github.com/scrooloose/nerdcommenter.git \
     https://github.com/tpope/vim-fugitive.git \
-    https://github.com/airblade/vim-gitgutter.git \
     https://github.com/vim-syntastic/syntastic.git \
-    https://github.com/vim-airline/vim-airline \
+    https://github.com/vim-airline/vim-airline.git \
     https://github.com/romainl/vim-qf.git \
+    https://github.com/airblade/vim-gitgutter.git \
+    https://github.com/fatih/vim-go.git \
 "
 
 cd $BUNDLE_DIR

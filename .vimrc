@@ -22,12 +22,13 @@ set fillchars+=vert:\
 
 colorscheme ron
 highlight CursorLine cterm=bold ctermbg=brown
+highlight EndOfBuffer ctermfg=black
 highlight LineNr ctermfg=darkmagenta
 highlight Pmenu ctermfg=cyan ctermbg=black
 highlight PmenuSel cterm=bold ctermfg=blue
 highlight TagbarSignature ctermfg=gray
-highlight TagbarHighlight ctermbg=brown
-highlight EndOfBuffer ctermfg=black
+highlight! link TagbarHighlight Normal
+highlight! link Sneak Normal
 
 "leader
 let mapleader = ';'
@@ -72,6 +73,10 @@ function! BufferClose()
     endif
 endfunction
 
+" sneak
+let g:sneak#s_next = 1
+map , <Plug>Sneak_;
+
 " ag
 nmap <silent> <F4> :grep! <cword><CR>:botright cw<CR>
 if executable('ag')
@@ -96,9 +101,6 @@ let NERDTreeShowBookmarks = 1
 let NERDTreeWinPos = 'right'
 let NERDTreeWinSize = 40
 autocmd StdinReadPre * let s:std_in=1
-if  &diff != 1
-    autocmd VimEnter * NERDTree
-endif
 
 " Tagbar
 nmap <silent> <F1> :TagbarToggle<CR>
@@ -148,9 +150,14 @@ function! TagbarFind()
     endif
 endfunction
 
+" startify
+let g:startify_files_number = 64
+let g:startify_list_order = [ 'files' ]
+
 " airline
 let g:airline_powerline_fonts = 1
 let g:airline_section_y = ''
+let g:airline_section_z = '%3p%% %#__accent_bold#%#__restore__#%#__accent_bold#%#__restore__#'
 let g:airline#extensions#tabline#enabled = 1
 
 " vim-qf
@@ -159,7 +166,7 @@ nmap <silent> <C-p> <Plug>qf_qf_previous
 nmap <silent> <C-n>  <Plug>qf_qf_next
 
 " syntastic
-set statusline+=%f\ %h%w%m%r\ %#warningmsg#%{SyntasticStatuslineFlag()}%*\ %=%(%l,%c%V\ %=\ %P%)
+set statusline +='%f\ %h%w%m%r\ %#warningmsg#%{SyntasticStatuslineFlag()}%*\ %=%(%l,%c%V\ %=\ %P%)'
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
@@ -168,7 +175,7 @@ let g:syntastic_python_checkers = [ 'pylint' ]
 let g:syntastic_go_checkers = [ 'govet' ]
 
 " vim-go
-let g:go_fmt_command = "goimports"
+let g:go_fmt_command = 'goimports'
 
 " custom
 function! SafeExecute(command)
@@ -182,8 +189,14 @@ function! SafeExecute(command)
         elseif l:buffer_name =~ 'NERD'
             execute 'wincmd h'
         endif
-        execute 'normal! ' . a:command . "\<CR>"
+        execute a:command
     endif
 endfunction
 
-" XXX function! SafeBuffer(name)
+if  &diff != 1
+    if argc() == 0
+        autocmd VimEnter * Tagbar
+    endif
+    autocmd VimEnter * NERDTree
+    autocmd VimEnter * execute 'wincmd h'
+endif
