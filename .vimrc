@@ -37,34 +37,7 @@ let mapleader = ';'
 map <silent> <leader><leader> :noh<cr>
 
 " buffer
-nmap <silent> <Tab> :call BufferNext()<CR>
-nmap <silent> <Esc>[Z :call BufferPrev()<CR>
 nmap <silent> <leader>x :call BufferClose()<CR>
-function! BufferPrev()
-    let l:buffer_name = expand( '%' )
-    let l:num_buffers = len(filter(range(1, bufnr('$')), 'buflisted(v:val)'))
-
-    if empty(l:buffer_name) || &filetype =~ 'tagbar' || &filetype =~ 'nerdtree'
-        execute 'wincmd W'
-    elseif l:num_buffers <= 1
-        execute 'NERDTreeFind'
-    else
-        execute 'bNext'
-    endif
-endfunction
-
-function! BufferNext()
-    let l:buffer_name = expand( '%' )
-    let l:num_buffers = len(filter(range(1, bufnr('$')), 'buflisted(v:val)'))
-
-    if empty(l:buffer_name) || &filetype =~ 'tagbar' || &filetype =~ 'nerdtree'
-        execute 'wincmd w'
-    elseif l:num_buffers <= 1
-        execute 'NERDTreeFind'
-    else
-        execute 'bnext'
-    endif
-endfunction
 
 function! BufferClose()
     let l:num_buffers = len(filter(range(1, bufnr('$')), 'buflisted(v:val)'))
@@ -167,10 +140,11 @@ let g:airline_skip_empty_sections = 1
 let g:airline#extensions#default#layout = [[ 'a', 'c', 'x' ], [ 'error', 'warning', 'b', 'z' ]]
 let g:airline#extensions#tabline#buffer_idx_mode = 1
 let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#excludes = ['__Tagbar__', 'NERD_tree']
 let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
 let g:airline#extensions#tabline#keymap_ignored_filetypes = ['tagbar', 'nerdtree', 'qf']
 let g:airline#extensions#tabline#show_tab_type = 0
+nmap <Esc>[Z <Plug>AirlineSelectPrevTab
+nmap <Tab> <Plug>AirlineSelectNextTab
 nmap <leader>1 <Plug>AirlineSelectTab1
 nmap <leader>2 <Plug>AirlineSelectTab2
 nmap <leader>3 <Plug>AirlineSelectTab3
