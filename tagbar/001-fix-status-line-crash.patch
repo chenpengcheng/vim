@@ -1,8 +1,19 @@
 diff --git a/.vim/bundle/tagbar/autoload/tagbar.vim b/.vim/bundle/tagbar/autoload/tagbar.vim
-index 4d5a1f1..872ca46 100644
+index 4d5a1f1..0e99d3a 100644
 --- a/.vim/bundle/tagbar/autoload/tagbar.vim
 +++ b/.vim/bundle/tagbar/autoload/tagbar.vim
-@@ -2721,7 +2721,7 @@ function! s:GetNearbyTag(all, forcecurrent, ...) abort
+@@ -1320,10 +1320,6 @@ function s:ProcessTag(name, filename, pattern, fields, is_split, typeinfo, filei
+         " The tag has a 'kind' that doesn't exist in the type definition
+         call tagbar#debug#log('Warning: Unknown tag kind: ' . taginfo.fields.kind)
+         if index(s:warnings.type, a:typeinfo.ftype) == -1
+-            call s:warning('Unknown tag kind encountered: ' .
+-                \ '"' . taginfo.fields.kind . '".' .
+-                \ ' Your ctags and Tagbar configurations are out of sync!' .
+-                \ ' Please read '':help tagbar-extend''.')
+             call add(s:warnings.type, a:typeinfo.ftype)
+         endif
+         return
+@@ -2721,7 +2717,7 @@ function! s:GetNearbyTag(all, forcecurrent, ...) abort
      for line in range(curline, 1, -1)
          if has_key(fileinfo.fline, line)
              let curtag = fileinfo.fline[line]
