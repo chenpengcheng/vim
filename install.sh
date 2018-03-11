@@ -5,18 +5,19 @@ BUNDLE_DIR=".vim/bundle"
 PLUGINS=" \
     https://github.com/scrooloose/nerdtree.git \
     https://github.com/majutsushi/tagbar.git \
-    https://github.com/farmergreg/vim-lastplace.git \
-    https://github.com/mhinz/vim-startify.git \
     https://github.com/junegunn/fzf.vim.git \
     https://github.com/justinmk/vim-sneak.git \
+    https://github.com/wellle/targets.vim.git \
+    https://github.com/tpope/vim-unimpaired.git \
+    https://github.com/farmergreg/vim-lastplace.git \
     https://github.com/Valloric/YouCompleteMe.git \
     https://github.com/godlygeek/tabular.git \
     https://github.com/scrooloose/nerdcommenter.git \
-    https://github.com/tpope/vim-fugitive.git \
-    https://github.com/vim-syntastic/syntastic.git \
     https://github.com/vim-airline/vim-airline.git \
-    https://github.com/romainl/vim-qf.git \
     https://github.com/airblade/vim-gitgutter.git \
+    https://github.com/romainl/vim-qf.git \
+    https://github.com/w0rp/ale.git \
+    https://github.com/tpope/vim-fugitive.git \
     https://github.com/fatih/vim-go.git \
 "
 
@@ -42,5 +43,5 @@ mv $HOME/.vim* /tmp/
 cp -R .vim* $HOME/
 
 cd .vim/bundle/
-rm -fr YouCompleteMe/ fzf.vim/ nerdcommenter/ nerdtree/ syntastic/ tabular tagbar/ vim-*
+rm -fr YouCompleteMe/ ale/ fzf.vim/ nerdcommenter/ nerdtree/ tabular/ tagbar/ targets.vim/ vim-*
 cd -

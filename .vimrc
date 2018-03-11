@@ -150,10 +150,6 @@ function! TagbarFind()
     endif
 endfunction
 
-" startify
-let g:startify_files_number = 64
-let g:startify_list_order = [ 'files' ]
-
 " airline
 let g:airline_powerline_fonts = 1
 let g:airline_section_y = ''
@@ -173,6 +169,9 @@ let g:syntastic_check_on_wq = 0
 let g:syntastic_mode_map = { 'passive_filetypes': [ 'java' ] }
 let g:syntastic_python_checkers = [ 'pylint' ]
 let g:syntastic_go_checkers = [ 'govet' ]
+
+" ale
+let g:ale_echo_msg_format = '[%linter%] %s'
 
 " vim-go
 let g:go_fmt_command = 'goimports'
