@@ -17,8 +17,10 @@ set incsearch
 set autoindent
 set autoread
 set shm+=A
-set updatetime=100
+set updatetime=10
+set ttimeoutlen=10
 set fillchars+=vert:\ 
+set directory^=/tmp//
 
 colorscheme ron
 highlight CursorLine cterm=bold ctermbg=brown
@@ -158,9 +160,27 @@ endfunction
 
 " airline
 let g:airline_powerline_fonts = 1
+let g:airline_section_x = '%{airline#extensions#tagbar#currenttag()}'
 let g:airline_section_y = ''
 let g:airline_section_z = '%3p%% %#__accent_bold#%#__restore__#%#__accent_bold#%#__restore__#'
+let g:airline_skip_empty_sections = 1
+let g:airline#extensions#default#layout = [[ 'a', 'c', 'x' ], [ 'error', 'warning', 'b', 'z' ]]
+let g:airline#extensions#tabline#buffer_idx_mode = 1
 let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#excludes = ['__Tagbar__', 'NERD_tree']
+let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
+let g:airline#extensions#tabline#keymap_ignored_filetypes = ['tagbar', 'nerdtree', 'qf']
+let g:airline#extensions#tabline#show_tab_type = 0
+nmap <leader>1 <Plug>AirlineSelectTab1
+nmap <leader>2 <Plug>AirlineSelectTab2
+nmap <leader>3 <Plug>AirlineSelectTab3
+nmap <leader>4 <Plug>AirlineSelectTab4
+nmap <leader>5 <Plug>AirlineSelectTab5
+nmap <leader>6 <Plug>AirlineSelectTab6
+nmap <leader>7 <Plug>AirlineSelectTab7
+nmap <leader>8 <Plug>AirlineSelectTab8
+nmap <leader>9 <Plug>AirlineSelectTab9
+autocmd BufDelete * call airline#extensions#tabline#buflist#invalidate()
 
 " vim-qf
 nmap <silent> <C-p> <Plug>qf_qf_previous
@@ -170,7 +190,7 @@ nmap <silent> <C-n>  <Plug>qf_qf_next
 let g:ale_echo_msg_format = '[%linter%] %s'
 
 " syntastic
-set statusline +='%f\ %h%w%m%r\ %#warningmsg#%{SyntasticStatuslineFlag()}%*\ %=%(%l,%c%V\ %=\ %P%)'
+" set statusline +='%f\ %h%w%m%r\ %#warningmsg#%{SyntasticStatuslineFlag()}%*\ %=%(%l,%c%V\ %=\ %P%)'
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
