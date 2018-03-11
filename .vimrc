@@ -34,21 +34,8 @@ highlight! link Sneak Normal
 
 " leader
 let mapleader = ';'
-map <silent> <leader><leader> :noh<cr>
-
-" buffer
+nmap <silent> <leader><leader> :noh<cr>
 nmap <silent> <leader>x :call BufferClose()<CR>
-
-function! BufferClose()
-    let l:num_buffers = len(filter(range(1, bufnr('$')), 'buflisted(v:val)'))
-
-    if &filetype == 'qf' || &filetype =~ 'tagbar' || &filetype =~ 'nerdtree'
-        execute 'quit'
-    elseif l:num_buffers > 1
-        execute 'bNext'
-        execute 'bdelete#'
-    endif
-endfunction
 
 " ag
 nmap <silent> <F4> :grep! <cword><CR>:botright cw<CR>
@@ -56,20 +43,20 @@ if executable('ag')
   let &grepprg='ag --nogroup --nocolor --width=80 -p ~/.vim/agignore'
 endif
 
-" fzf
-nmap <silent> <F10> :call SafeExecute(':Files')<CR>
-nmap <silent> <F3> :call SafeExecute(':Tags')<CR>
-set rtp+=~/.fzf
-let g:fzf_layout = { 'down': '~20%' }
-
 " sneak
+nmap , <Plug>Sneak_;
 let g:sneak#s_next = 1
-map , <Plug>Sneak_;
 
 " rooter
 let g:rooter_change_directory_for_non_project_files = 'current'
 let g:rooter_resolve_links = 1
 let g:rooter_silent_chdir = 1
+
+" fzf
+nmap <silent> <F10> :call SafeExecute(':Files')<CR>
+nmap <silent> <F3> :call SafeExecute(':Tags')<CR>
+set rtp+=~/.fzf
+let g:fzf_layout = { 'down': '~20%' }
 
 " NERDTree
 nmap <silent> <F11> :call SafeExecute(':NERDTreeFind')<CR>
@@ -131,6 +118,10 @@ function! TagbarFind()
     endif
 endfunction
 
+" vim-qf
+nmap <silent> <C-p> <Plug>qf_qf_previous
+nmap <silent> <C-n>  <Plug>qf_qf_next
+
 " airline
 let g:airline_powerline_fonts = 1
 let g:airline_section_x = '%{airline#extensions#tagbar#currenttag()}'
@@ -155,10 +146,6 @@ nmap <leader>7 <Plug>AirlineSelectTab7
 nmap <leader>8 <Plug>AirlineSelectTab8
 nmap <leader>9 <Plug>AirlineSelectTab9
 autocmd BufDelete * call airline#extensions#tabline#buflist#invalidate()
-
-" vim-qf
-nmap <silent> <C-p> <Plug>qf_qf_previous
-nmap <silent> <C-n>  <Plug>qf_qf_next
 
 " ale
 let g:ale_echo_msg_format = '[%linter%] %s'
@@ -186,6 +173,17 @@ function! SafeExecute(command)
             execute 'wincmd h'
         endif
         execute a:command
+    endif
+endfunction
+
+function! BufferClose()
+    let l:num_buffers = len(filter(range(1, bufnr('$')), 'buflisted(v:val)'))
+
+    if &filetype == 'qf' || &filetype =~ 'tagbar' || &filetype =~ 'nerdtree'
+        execute 'quit'
+    elseif l:num_buffers > 1
+        execute 'bNext'
+        execute 'bdelete#'
     endif
 endfunction
 
