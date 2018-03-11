@@ -30,8 +30,9 @@ highlight TagbarSignature ctermfg=gray
 highlight! link TagbarHighlight Normal
 highlight! link Sneak Normal
 
-"leader
+" leader
 let mapleader = ';'
+map <silent> <leader><leader> :noh<cr>
 
 " buffer
 nmap <silent> <Tab> :call BufferNext()<CR>
