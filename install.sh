@@ -6,6 +6,7 @@ PLUGINS=" \
     https://github.com/scrooloose/nerdtree.git \
     https://github.com/majutsushi/tagbar.git \
     https://github.com/junegunn/fzf.vim.git \
+    https://github.com/airblade/vim-rooter.git \
     https://github.com/justinmk/vim-sneak.git \
     https://github.com/wellle/targets.vim.git \
     https://github.com/tpope/vim-unimpaired.git \

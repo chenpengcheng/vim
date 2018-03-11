@@ -41,7 +41,7 @@ function! BufferPrev()
     let l:buffer_name = expand( '%' )
     let l:num_buffers = len(filter(range(1, bufnr('$')), 'buflisted(v:val)'))
 
-    if empty(l:buffer_name) || l:buffer_name =~ '__Tagbar__' || l:buffer_name =~ 'NERD'
+    if empty(l:buffer_name) || &filetype =~ 'tagbar' || &filetype =~ 'nerdtree'
         execute 'wincmd W'
     elseif l:num_buffers <= 1
         execute 'NERDTreeFind'
@@ -54,7 +54,7 @@ function! BufferNext()
     let l:buffer_name = expand( '%' )
     let l:num_buffers = len(filter(range(1, bufnr('$')), 'buflisted(v:val)'))
 
-    if empty(l:buffer_name) || l:buffer_name =~ '__Tagbar__' || l:buffer_name =~ 'NERD'
+    if empty(l:buffer_name) || &filetype =~ 'tagbar' || &filetype =~ 'nerdtree'
         execute 'wincmd w'
     elseif l:num_buffers <= 1
         execute 'NERDTreeFind'
@@ -64,18 +64,15 @@ function! BufferNext()
 endfunction
 
 function! BufferClose()
-    let l:buffer_name = expand( '%' )
     let l:num_buffers = len(filter(range(1, bufnr('$')), 'buflisted(v:val)'))
 
-    if l:num_buffers > 1 && l:buffer_name !~ '__Tagbar__' && l:buffer_name !~ 'NERD'
+    if &filetype == 'qf' || &filetype =~ 'tagbar' || &filetype =~ 'nerdtree'
+        execute 'quit'
+    elseif l:num_buffers > 1
         execute 'bNext'
         execute 'bdelete#'
     endif
 endfunction
-
-" sneak
-let g:sneak#s_next = 1
-map , <Plug>Sneak_;
 
 " ag
 nmap <silent> <F4> :grep! <cword><CR>:botright cw<CR>
@@ -88,6 +85,15 @@ nmap <silent> <F10> :call SafeExecute(':Files')<CR>
 nmap <silent> <F3> :call SafeExecute(':Tags')<CR>
 set rtp+=~/.fzf
 let g:fzf_layout = { 'down': '~20%' }
+
+" sneak
+let g:sneak#s_next = 1
+map , <Plug>Sneak_;
+
+" rooter
+let g:rooter_change_directory_for_non_project_files = 'current'
+let g:rooter_resolve_links = 1
+let g:rooter_silent_chdir = 1
 
 " NERDTree
 nmap <silent> <F11> :call SafeExecute(':NERDTreeFind')<CR>
@@ -143,8 +149,7 @@ let g:tagbar_type_go = {
 \ }
 autocmd BufRead * nested :call tagbar#autoopen(0)
 function! TagbarFind()
-    let l:buffer_name = expand('%')
-    if l:buffer_name !~ '__Tagbar__'
+    if &filetype !~ 'tagbar'
         call SafeExecute( ':TagbarShowTag' )
         execute 'wincmd h'
     endif
@@ -157,9 +162,11 @@ let g:airline_section_z = '%3p%% %#__accent_bold#%#__restore__#%#__accent_bold#%
 let g:airline#extensions#tabline#enabled = 1
 
 " vim-qf
-nmap <silent> <F5> <Plug>qf_qf_toggle
 nmap <silent> <C-p> <Plug>qf_qf_previous
 nmap <silent> <C-n>  <Plug>qf_qf_next
+
+" ale
+let g:ale_echo_msg_format = '[%linter%] %s'
 
 " syntastic
 set statusline +='%f\ %h%w%m%r\ %#warningmsg#%{SyntasticStatuslineFlag()}%*\ %=%(%l,%c%V\ %=\ %P%)'
@@ -170,28 +177,24 @@ let g:syntastic_mode_map = { 'passive_filetypes': [ 'java' ] }
 let g:syntastic_python_checkers = [ 'pylint' ]
 let g:syntastic_go_checkers = [ 'govet' ]
 
-" ale
-let g:ale_echo_msg_format = '[%linter%] %s'
-
 " vim-go
 let g:go_fmt_command = 'goimports'
 
 " custom
 function! SafeExecute(command)
-    let l:buffer_name = expand('%')
-    let l:num_buffers = len(filter(range(1, bufnr('$')), 'buflisted(v:val)'))
     let l:num_windows = winnr('$')
 
     if l:num_windows > 1
-        if l:buffer_name =~ '__Tagbar__'
+        if &filetype =~ 'tagbar'
             execute 'wincmd l'
-        elseif l:buffer_name =~ 'NERD'
+        elseif &filetype =~ 'nerdtree'
             execute 'wincmd h'
         endif
         execute a:command
     endif
 endfunction
 
+" start
 if  &diff != 1
     if argc() == 0
         autocmd VimEnter * Tagbar
