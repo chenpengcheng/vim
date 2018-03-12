@@ -36,6 +36,7 @@ highlight! link Sneak Normal
 let mapleader = ';'
 nmap <silent> <leader><leader> :noh<cr>
 nmap <silent> <leader>x :call BufferClose()<CR>
+nmap <silent> <leader>X :qall<cr>
 
 " ag
 nmap <silent> <F4> :grep! <cword><CR>:botright cw<CR>
@@ -195,6 +196,3 @@ if  &diff != 1
     autocmd VimEnter * NERDTree
     autocmd VimEnter * execute 'wincmd h'
 endif
-
-" quit
-nmap <silent> <C-d> :qall<cr>
