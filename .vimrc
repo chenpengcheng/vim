@@ -195,3 +195,6 @@ if  &diff != 1
     autocmd VimEnter * NERDTree
     autocmd VimEnter * execute 'wincmd h'
 endif
+
+" quit
+nmap <silent> <C-d> :qall<cr>
