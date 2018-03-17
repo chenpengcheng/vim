@@ -22,6 +22,7 @@ set updatetime=10
 set ttimeoutlen=10
 set fillchars+=vert:\ 
 set directory^=/tmp//
+set mouse=a
 
 colorscheme ron
 highlight CursorLine cterm=bold ctermbg=brown
