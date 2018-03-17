@@ -1,4 +1,5 @@
 execute pathogen#infect()
+execute pathogen#helptags()
 
 syntax on
 filetype plugin indent on
@@ -29,6 +30,7 @@ highlight LineNr ctermfg=darkmagenta
 highlight Pmenu ctermfg=cyan ctermbg=black
 highlight PmenuSel cterm=bold ctermfg=blue
 highlight TagbarSignature ctermfg=gray
+highlight clear ALEWarningSign
 highlight! link TagbarHighlight Normal
 highlight! link Sneak Normal
 
@@ -150,9 +152,10 @@ autocmd BufDelete * call airline#extensions#tabline#buflist#invalidate()
 
 " ale
 let g:ale_echo_msg_format = '[%linter%] %s'
+let g:ale_linters = { 'go': ['go vet'], }
+let g:ale_sign_warning = '**'
 
 " syntastic
-" set statusline +='%f\ %h%w%m%r\ %#warningmsg#%{SyntasticStatuslineFlag()}%*\ %=%(%l,%c%V\ %=\ %P%)'
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
