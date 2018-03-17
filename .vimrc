@@ -37,6 +37,7 @@ highlight! link Sneak Normal
 " leader
 let mapleader = ';'
 nmap <silent> <leader><leader> :noh<cr>
+nmap <silent> <leader>b :edit #<cr>
 nmap <silent> <leader>x :call BufferClose()<CR>
 nmap <silent> <leader>X :qall<cr>
 
@@ -150,21 +151,22 @@ nmap <leader>8 <Plug>AirlineSelectTab8
 nmap <leader>9 <Plug>AirlineSelectTab9
 autocmd BufDelete * call airline#extensions#tabline#buflist#invalidate()
 
-" ale
-let g:ale_echo_msg_format = '[%linter%] %s'
-let g:ale_linters = { 'go': ['go vet'], }
-let g:ale_sign_warning = '**'
-
 " syntastic
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_mode_map = { 'passive_filetypes': [ 'java' ] }
-let g:syntastic_python_checkers = [ 'pylint' ]
 let g:syntastic_go_checkers = [ 'govet' ]
+let g:syntastic_python_checkers = [ 'pylint' ]
 
 " vim-go
 let g:go_fmt_command = 'goimports'
+let g:go_fmt_fail_silently = 1
+let g:go_highlight_space_tab_error = 1
+let g:go_highlight_trailing_whitespace_error = 1
+let g:go_list_height = 10
+let g:go_updatetime = 10
+nmap <silent> <leader>i :GoInfo<cr>
 
 " custom
 function! SafeExecute(command)
