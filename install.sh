@@ -32,6 +32,7 @@ cp fzf/tags.py .vim/bundle/fzf.vim/bin/
 patch -p1 < fzf/001-python-tags.patch
 patch -p1 < tagbar/001-fix-status-line-crash.patch
 patch -p1 < nerdtree/001-disable-bookmark-split-window.patch
+patch -p1 < nerdtree/002-disable-bookmark-deletion-confirmation.patch
 cp nerdtree/custom.vim .vim/bundle/nerdtree/nerdtree_plugin/
 
 cd .vim/bundle/YouCompleteMe/
