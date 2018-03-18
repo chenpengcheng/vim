@@ -54,15 +54,15 @@ def handle_tags( lines ):
 
         kind = get_kind( fields )
         name = get_name( kind, fields )
-        sign = fields[ -1 ].split( ':' )[ -1 ] if len( fields[ -1 ] ) > 1 else ''
-        sign = tabrize( sign, 16 )
-        path, loc = tabrize( fields[ 1 ], 32 ), fields[ 2 ]
+        sig = fields[ -1 ].split( ':' )[ -1 ] if len( fields[ -1 ] ) > 1 else ''
+        sig = tabrize( sig, 24 )
+        path, loc = tabrize( fields[ 1 ], 48 ), fields[ 2 ]
         if loc.startswith( '/^' ):
             loc = tabrize( loc, 40 )
 
 	if not args.G or (kind in global_kinds + variable_kinds):
 	    results[ kind ].append( '\t'.join(
-		[ name.ljust( 32 ), path, loc, kind, sign, tags ]
+		[ name.ljust( 32 ), path, loc, kind, sig, tags ]
             ) )
 
         if kind not in global_kinds + member_kinds + variable_kinds + ignore_kinds:
