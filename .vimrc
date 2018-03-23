@@ -31,6 +31,7 @@ highlight LineNr ctermfg=darkmagenta
 highlight Pmenu ctermfg=cyan ctermbg=black
 highlight PmenuSel cterm=bold ctermfg=blue
 highlight TagbarSignature ctermfg=gray
+highlight VertSplit ctermfg=darkgray
 highlight! link TagbarHighlight Normal
 highlight! link Sneak Normal
 
@@ -125,6 +126,7 @@ endfunction
 " vim-qf
 nmap <silent> <C-p> <Plug>qf_qf_previous
 nmap <silent> <C-n>  <Plug>qf_qf_next
+autocmd FileType qf wincmd K
 
 " airline
 let g:airline_powerline_fonts = 1
@@ -199,5 +201,7 @@ if  &diff != 1
         autocmd VimEnter * Tagbar
     endif
     autocmd VimEnter * NERDTree
-    autocmd VimEnter * execute 'wincmd h'
+    if argc() != 0
+        autocmd VimEnter * execute 'wincmd h'
+    endif
 endif
