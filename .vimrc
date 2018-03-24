@@ -5,7 +5,7 @@ syntax on
 filetype plugin indent on
 
 set t_Co=256
-set clipboard=unnamed
+set clipboard=unnamedplus
 set ff=unix
 set number
 set backspace=indent,eol,start
