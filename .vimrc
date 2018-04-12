@@ -196,12 +196,11 @@ function! BufferClose()
 endfunction
 
 " start
-if  &diff != 1
-    if argc() == 0
-        autocmd VimEnter * Tagbar
-    endif
+if  &columns >= 160 && &diff != 1
     autocmd VimEnter * NERDTree
     if argc() != 0
         autocmd VimEnter * execute 'wincmd h'
+    elseif  &columns >= 180
+        autocmd VimEnter * Tagbar
     endif
 endif
