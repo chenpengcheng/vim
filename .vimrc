@@ -39,6 +39,8 @@ highlight! link Sneak Normal
 let mapleader = ';'
 nmap <silent> <leader><leader> :noh<cr>
 nmap <silent> <leader>b :edit #<cr>
+nmap <silent> <leader>j :lnext<cr>
+nmap <silent> <leader>k :lprev<cr>
 nmap <silent> <leader>x :call BufferClose()<CR>
 nmap <silent> <leader>X :qall<cr>
 
@@ -115,7 +117,6 @@ let g:tagbar_type_go = {
     \ 'ctagsbin'  : 'gotags',
     \ 'ctagsargs' : '-sort -silent'
 \ }
-autocmd BufRead * nested :call tagbar#autoopen(0)
 function! TagbarFind()
     if &filetype !~ 'tagbar'
         call SafeExecute( ':TagbarShowTag' )
@@ -196,11 +197,14 @@ function! BufferClose()
 endfunction
 
 " start
-if  &columns >= 160 && &diff != 1
-    autocmd VimEnter * NERDTree
-    if argc() != 0
-        autocmd VimEnter * execute 'wincmd h'
-    elseif  &columns >= 180
+if  &diff != 1
+    if &columns > 160
+        autocmd VimEnter * NERDTree
+        if argc() != 0
+            autocmd VimEnter * execute 'wincmd h'
+        endif
+    elseif &columns > 180 && argc() == 0
         autocmd VimEnter * Tagbar
+        autocmd BufRead * nested :call tagbar#autoopen(0)
     endif
 endif
