@@ -203,8 +203,10 @@ if  &diff != 1
         if argc() != 0
             autocmd VimEnter * execute 'wincmd h'
         endif
-    elseif &columns > 180 && argc() == 0
+    endif
+    if &columns > 180
         autocmd VimEnter * Tagbar
         autocmd BufRead * nested :call tagbar#autoopen(0)
+        autocmd VimEnter * execute 'wincmd h'
     endif
 endif
