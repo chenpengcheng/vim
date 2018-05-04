@@ -190,8 +190,10 @@ function! BufferClose()
 
     if &filetype == 'qf' || &filetype =~ 'tagbar' || &filetype =~ 'nerdtree'
         execute 'quit'
-    elseif l:num_buffers > 1
-        execute 'bNext'
+    else
+        if l:num_buffers > 1
+            execute 'bNext'
+        endif
         execute 'bdelete#'
     endif
 endfunction
