@@ -43,6 +43,8 @@ nmap <silent> <leader>j :lnext<cr>
 nmap <silent> <leader>k :lprev<cr>
 nmap <silent> <leader>x :call BufferClose()<CR>
 nmap <silent> <leader>X :qall<cr>
+nmap <silent> <leader>hj <Plug>GitGutterNextHunk
+nmap <silent> <leader>hk <Plug>GitGutterPrevHunk
 
 " ag
 nmap <silent> <F4> :grep! <cword><CR>:botright cw<CR>
@@ -153,6 +155,11 @@ nmap <leader>7 <Plug>AirlineSelectTab7
 nmap <leader>8 <Plug>AirlineSelectTab8
 nmap <leader>9 <Plug>AirlineSelectTab9
 autocmd BufDelete * call airline#extensions#tabline#buflist#invalidate()
+
+" ale
+let g:ale_echo_msg_format = '[%linter%] %s'
+let g:ale_linters = { 'go': ['go vet'], }
+let g:ale_sign_warning = '>>'
 
 " syntastic
 let g:syntastic_always_populate_loc_list = 1
