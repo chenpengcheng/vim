@@ -200,8 +200,10 @@ function! BufferClose()
     else
         if l:num_buffers > 1
             execute 'bNext'
+            execute 'bdelete#'
+        elseif l:num_buffers == 1
+            execute 'bdelete'
         endif
-        execute 'bdelete#'
     endif
 endfunction
 
