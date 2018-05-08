@@ -127,8 +127,8 @@ function! TagbarFind()
 endfunction
 
 " vim-qf
-nmap <silent> <C-p> <Plug>qf_qf_previous
-nmap <silent> <C-n>  <Plug>qf_qf_next
+nmap <silent> <C-p> <Plug>(qf_qf_previous)
+nmap <silent> <C-n>  <Plug>(qf_qf_next)
 autocmd FileType qf wincmd K
 
 " airline
