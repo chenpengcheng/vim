@@ -39,8 +39,8 @@ highlight! link Sneak Normal
 let mapleader = ';'
 nmap <silent> <leader><leader> :noh<cr>
 nmap <silent> <leader>b :edit #<cr>
-nmap <silent> <leader>j :lnext<cr>
-nmap <silent> <leader>k :lprev<cr>
+nmap <silent> <leader>j :call LocNext()<cr>
+nmap <silent> <leader>k :call LocPrev()<cr>
 nmap <silent> <leader>x :call BufferClose()<CR>
 nmap <silent> <leader>X :qall<cr>
 nmap <silent> <leader>hj <Plug>GitGutterNextHunk
@@ -159,10 +159,12 @@ autocmd BufDelete * call airline#extensions#tabline#buflist#invalidate()
 " ale
 let g:ale_echo_msg_format = '[%linter%] %s'
 let g:ale_linters = { 'go': ['go vet'], }
+let g:ale_lint_on_text_changed = 'never'
 let g:ale_sign_warning = '>>'
 
 " syntastic
 let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_jump = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_mode_map = { 'passive_filetypes': [ 'java' ] }
@@ -172,6 +174,7 @@ let g:syntastic_python_checkers = [ 'pylint' ]
 " vim-go
 let g:go_fmt_command = 'goimports'
 let g:go_fmt_fail_silently = 1
+let g:go_list_type = 'locationlist'
 let g:go_highlight_space_tab_error = 1
 let g:go_highlight_trailing_whitespace_error = 1
 let g:go_list_height = 10
@@ -205,6 +208,24 @@ function! BufferClose()
             execute 'bdelete'
         endif
     endif
+endfunction
+
+function! LocPrev()
+    try
+        lprev
+    catch /^Vim\%((\a\+)\)\=:E42/
+    catch /^Vim\%((\a\+)\)\=:E553/
+        llast
+    endtry
+endfunction
+
+function! LocNext()
+    try
+        lnext
+    catch /^Vim\%((\a\+)\)\=:E42/
+    catch /^Vim\%((\a\+)\)\=:E553/
+        lfirst
+    endtry
 endfunction
 
 " start

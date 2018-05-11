@@ -2,6 +2,7 @@
 
 BUNDLE_DIR=".vim/bundle"
 
+# https://github.com/w0rp/ale.git
 PLUGINS=" \
     https://github.com/scrooloose/nerdtree.git \
     https://github.com/majutsushi/tagbar.git \
@@ -17,7 +18,7 @@ PLUGINS=" \
     https://github.com/vim-airline/vim-airline.git \
     https://github.com/airblade/vim-gitgutter.git \
     https://github.com/romainl/vim-qf.git \
-    https://github.com/w0rp/ale.git \
+    https://github.com/vim-syntastic/syntastic.git \
     https://github.com/tpope/vim-fugitive.git \
     https://github.com/fatih/vim-go.git \
 "
