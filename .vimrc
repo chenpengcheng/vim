@@ -50,6 +50,7 @@ nmap <silent> <leader>hk <Plug>GitGutterPrevHunk
 
 " mouse
 nmap <silent> <RightMouse> :call BufferExecute(':call BufferDelete()')<CR>
+nmap <silent> <2-LeftMouse> gd
 
 " ag
 nmap <silent> <F4> :grep! <cword><CR>:botright cw<CR>
@@ -70,7 +71,9 @@ let g:rooter_silent_chdir = 1
 nmap <silent> <F10> :call BufferExecute(':Files')<CR>
 nmap <silent> <F3> :call BufferExecute(':Tags')<CR>
 set rtp+=~/.fzf
+let $FZF_DEFAULT_COMMAND='ag --no-color --hidden -g ""'
 let g:fzf_layout = { 'down': '~20%' }
+let g:fzf_tags_command = 'ctags -R --excmd=number --exclude=.git --exclude=node_modules'
 
 " NERDTree
 nmap <silent> <F11> :call BufferExecute(':NERDTreeFind')<CR>
