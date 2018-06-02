@@ -1,2 +1,6 @@
 tags
+coverage
 vendor
+node_modules
+.git
+.nyc_output

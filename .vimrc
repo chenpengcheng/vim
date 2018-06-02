@@ -71,7 +71,7 @@ let g:rooter_silent_chdir = 1
 nmap <silent> <F10> :call BufferExecute(':Files')<CR>
 nmap <silent> <F3> :call BufferExecute(':Tags')<CR>
 set rtp+=~/.fzf
-let $FZF_DEFAULT_COMMAND='ag --no-color --hidden -g ""'
+let $FZF_DEFAULT_COMMAND='ag --no-color --hidden -p ~/.vim/agignore -g ""'
 let g:fzf_layout = { 'down': '~20%' }
 let g:fzf_tags_command = 'ctags -R --excmd=number --exclude=.git --exclude=node_modules'
 
@@ -127,6 +127,25 @@ let g:tagbar_type_go = {
     \ 'ctagsbin'  : 'gotags',
     \ 'ctagsargs' : '-sort -silent'
 \ }
+let g:tagbar_type_graphql = {
+    \ 'ctagstype' : 'graphql',
+    \ 'kinds'     : [
+        \ 'e:enumerations',
+        \ 'f:functions',
+        \ 'i:variables',
+        \ 'm:methods',
+        \ 'q:variables',
+        \ 't:types'
+    \ ],
+    \ 'sro' : '.',
+    \ 'kind2scope' : {
+        \ 't' : 'type'
+    \ },
+    \ 'scope2kind' : {
+        \ 'type' : 't'
+    \ },
+\ }
+
 function! TagbarFind()
     if &filetype !~ 'tagbar'
         call BufferExecute( ':TagbarShowTag' )
@@ -172,7 +191,6 @@ let g:ale_sign_warning = '>>'
 
 " syntastic
 let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_jump = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_mode_map = { 'passive_filetypes': [ 'java' ] }
