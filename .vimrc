@@ -248,12 +248,14 @@ endfunction
 " start
 if  &diff != 1
     if &columns > 160
+        if &columns <= 180
+            let g:NERDTreeWinSize = 35
+            let g:tagbar_width = 35
+        endif
         autocmd VimEnter * NERDTree
         if argc() != 0
             autocmd VimEnter * execute 'wincmd h'
         endif
-    endif
-    if &columns > 180
         autocmd BufRead * nested :call tagbar#autoopen(0)
     endif
 endif
