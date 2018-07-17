@@ -277,3 +277,9 @@ if  &diff != 1
         autocmd BufRead * nested :call tagbar#autoopen(0)
     endif
 endif
+
+" workarounds
+" DeprecationWarning: the imp module is deprecated in favour of importlib
+if has('python3')
+  silent! python3 1
+endif
