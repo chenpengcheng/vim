@@ -9,6 +9,7 @@ PLUGINS=" \
     https://github.com/junegunn/fzf.vim.git \
     https://github.com/airblade/vim-rooter.git \
     https://github.com/justinmk/vim-sneak.git \
+    https://github.com/tpope/vim-sleuth.git \
     https://github.com/wellle/targets.vim.git \
     https://github.com/tpope/vim-unimpaired.git \
     https://github.com/farmergreg/vim-lastplace.git \
@@ -23,6 +24,8 @@ PLUGINS=" \
     https://github.com/fatih/vim-go.git \
 "
 
+mkdir -p $BUNDLE_DIR
+
 cd $BUNDLE_DIR
 for plugin in $PLUGINS
     do git clone $plugin
@@ -32,8 +35,7 @@ cd -
 cp fzf/tags.py .vim/bundle/fzf.vim/bin/
 patch -p1 < fzf/001-python-tags.patch
 patch -p1 < tagbar/001-fix-status-line-crash.patch
-patch -p1 < nerdtree/001-disable-bookmark-split-window.patch
-patch -p1 < nerdtree/002-disable-bookmark-deletion-confirmation.patch
+patch -p1 < nerdtree/001-disable-bookmark-deletion-confirmation.patch
 cp nerdtree/custom.vim .vim/bundle/nerdtree/nerdtree_plugin/
 
 cd .vim/bundle/YouCompleteMe/
