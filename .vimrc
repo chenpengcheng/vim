@@ -9,6 +9,7 @@ set clipboard=unnamedplus
 set ff=unix
 set number
 set relativenumber
+set conceallevel=1
 set backspace=indent,eol,start
 set expandtab
 set softtabstop=4
@@ -145,6 +146,26 @@ let g:tagbar_type_graphql = {
         \ 'type' : 't'
     \ },
 \ }
+let g:tagbar_type_make = {
+    \ 'kinds':[
+        \ 'm:macros',
+        \ 't:targets'
+    \ ]
+\}
+let g:tagbar_type_markdown = {
+    \ 'ctagstype': 'markdown',
+    \ 'ctagsbin' : 'markdown2ctags.py',
+    \ 'ctagsargs' : '-f - --sort=yes',
+    \ 'kinds' : [
+        \ 's:sections',
+        \ 'i:images'
+    \ ],
+    \ 'sro' : '|',
+    \ 'kind2scope' : {
+        \ 's' : 'section',
+    \ },
+    \ 'sort': 0,
+\ }
 
 function! TagbarFind()
     if &filetype !~ 'tagbar'
@@ -205,6 +226,13 @@ let g:go_highlight_space_tab_error = 1
 let g:go_highlight_trailing_whitespace_error = 1
 let g:go_list_height = 10
 let g:go_updatetime = 10
+
+" vim-javascript
+let g:javascript_plugin_jsdoc = 1
+let g:javascript_plugin_ngdoc = 1
+let g:javascript_plugin_flow = 1
+let g:javascript_conceal_function = "⨍"
+let g:javascript_conceal_return = "←"
 
 " buffer
 function! BufferClose()

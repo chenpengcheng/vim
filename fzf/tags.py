@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 from collections import defaultdict
-import argparse, sys
+import argparse, os, sys
 
 global_kinds = [ 'i', 'n', 'c', 't', 'f', 'F' ]
 member_kinds = [ 'r', 'e', 'm', 'w' ]
@@ -43,7 +43,7 @@ def get_kind( fields ):
             kind = 'a'
     return kind
 
-def handle_tags( lines ):
+def handle_tags( dirname, lines ):
     results = defaultdict( list )
 
     for line in lines:
@@ -57,7 +57,9 @@ def handle_tags( lines ):
         sig = fields[ -1 ].split( ':' )[ -1 ] if len( fields[ -1 ] ) > 1 else ''
         sig = tabrize( sig, 24 )
         path, loc = tabrize( fields[ 1 ], 48 ), fields[ 2 ]
-        if loc.startswith( '/^' ):
+        if path.startswith( dirname ):
+            path = path[len(dirname)+1:]
+        if loc.startswith( '/' ):
             loc = tabrize( loc, 40 )
 
 	if not args.G or (kind in global_kinds + variable_kinds):
@@ -82,5 +84,5 @@ for tags in args.tags_list:
         lines = f.readlines()
         for i, line in enumerate( lines ):
             if not line.startswith( '!' ):
-                handle_tags( lines[ i: ] )
+                handle_tags( os.getcwd(), lines[ i: ] )
                 break

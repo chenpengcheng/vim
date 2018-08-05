@@ -22,6 +22,8 @@ PLUGINS=" \
     https://github.com/vim-syntastic/syntastic.git \
     https://github.com/tpope/vim-fugitive.git \
     https://github.com/fatih/vim-go.git \
+    https://github.com/jparise/vim-graphql.git \
+    https://github.com/pangloss/vim-javascript.git \
 "
 
 mkdir -p $BUNDLE_DIR
