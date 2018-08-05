@@ -28,6 +28,7 @@ set directory^=/tmp//
 set mouse=a
 
 colorscheme ron
+highlight Conceal cterm=bold ctermfg=yellow ctermbg=black
 highlight CursorLine cterm=bold ctermbg=brown
 highlight EndOfBuffer ctermfg=black
 highlight LineNr ctermfg=darkmagenta
@@ -216,7 +217,7 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_mode_map = { 'passive_filetypes': [ 'java' ] }
 let g:syntastic_go_checkers = [ 'govet' ]
-let g:syntastic_python_checkers = [ 'pylint' ]
+let g:syntastic_python_checkers = [ 'flake8' ]
 
 " vim-go
 let g:go_fmt_command = 'goimports'
@@ -233,6 +234,13 @@ let g:javascript_plugin_ngdoc = 1
 let g:javascript_plugin_flow = 1
 let g:javascript_conceal_function = "⨍"
 let g:javascript_conceal_return = "←"
+let g:javascript_conceal_this = "@"
+
+" python-mode
+let g:pymode_breakpoint_bind = '<leader>p'
+let g:pymode_options_colorcolumn = 0
+let g:pymode_lint_sort = ['E', 'C', 'I']
+let g:pymode_lint_cwindow = 0
 
 " buffer
 function! BufferClose()
