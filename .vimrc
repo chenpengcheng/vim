@@ -217,6 +217,7 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_mode_map = { 'passive_filetypes': [ 'java' ] }
 let g:syntastic_go_checkers = [ 'govet' ]
+let g:syntastic_java_checkers = []
 let g:syntastic_python_checkers = [ 'flake8' ]
 
 " vim-go
@@ -241,6 +242,19 @@ let g:pymode_breakpoint_bind = '<leader>p'
 let g:pymode_options_colorcolumn = 0
 let g:pymode_lint_sort = ['E', 'C', 'I']
 let g:pymode_lint_cwindow = 0
+
+" jedi-vim
+let g:jedi#documentation_command = "K"
+let g:jedi#goto_command = "gd"
+let g:jedi#completions_command = ""
+let g:jedi#goto_assignments_command = ""
+let g:jedi#goto_definitions_command = ""
+let g:jedi#usages_command = ""
+let g:jedi#rename_command = ""
+
+" tern_for_vim
+autocmd FileType javascript nmap <silent> <buffer> gd :TernDef<cr>
+autocmd FileType javascript nmap <silent> <buffer> K :TernDoc<cr>
 
 " buffer
 function! BufferClose()

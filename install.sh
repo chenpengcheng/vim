@@ -5,11 +5,16 @@ PATCHED_PLUGINS="fzf.vim nerdtree tagbar"
 
 git submodule update --init --recursive
 
-$BUNDLE_DIR/YouCompleteMe/install.py --clang-completer --go-completer --js-completer
+$BUNDLE_DIR/YouCompleteMe/install.py --clang-completer --go-completer --java-completer
+
+cd $BUNDLE_DIR/tern_for_vim
+npm install
+cd -
 
 cp fzf/tags.py .vim/bundle/fzf.vim/bin/
 patch -p1 < fzf/001-python-tags.patch
 patch -p1 < tagbar/001-fix-status-line-crash.patch
+
 cp nerdtree/custom.vim .vim/bundle/nerdtree/nerdtree_plugin/
 patch -p1 < nerdtree/001-disable-bookmark-deletion-confirmation.patch
 
