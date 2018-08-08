@@ -91,7 +91,7 @@ def fix_tags(dirname, lines):
         if loc.startswith('/'):
             loc = indent(loc, 40)
 
-        if (kind in TYPES + VARS) or args.include_local:
+        if (kind in TYPES + VARS) or not args.exclude_local:
             results[kind].append(
                 '\t'.join([name.ljust(32), path, loc, kind, signature])
             )
@@ -108,11 +108,11 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('tags_list', metavar='tags_list', type=str, nargs='+')
     parser.add_argument(
-        '-include-local',
-        dest='include_local',
+        '-exclude-local',
+        dest='exclude_local',
         action='store_const',
         const=True,
-        default=True,
+        default=False,
     )
     args = parser.parse_args()
 
