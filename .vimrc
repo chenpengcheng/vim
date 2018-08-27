@@ -10,6 +10,7 @@ set ff=unix
 set number
 set relativenumber
 set conceallevel=1
+set completeopt-=preview
 set backspace=indent,eol,start
 set expandtab
 set softtabstop=4
@@ -32,12 +33,15 @@ highlight Conceal cterm=bold ctermfg=yellow ctermbg=black
 highlight CursorLine cterm=bold ctermbg=brown
 highlight EndOfBuffer ctermfg=black
 highlight LineNr ctermfg=darkmagenta
+highlight MatchParen cterm=bold ctermfg=black ctermbg=yellow
+highlight MatchWord cterm=bold ctermfg=blue ctermbg=black
+highlight MatchWordCur cterm=bold ctermfg=yellow ctermbg=brown
 highlight Pmenu ctermfg=cyan ctermbg=black
 highlight PmenuSel cterm=bold ctermfg=blue
+highlight! link Sneak Search
+highlight! link TagbarHighlight Normal
 highlight TagbarSignature ctermfg=gray
 highlight VertSplit ctermfg=darkgray
-highlight! link TagbarHighlight Normal
-highlight! link Sneak Normal
 
 " leader
 let mapleader = ';'
@@ -62,7 +66,24 @@ endif
 
 " sneak
 nmap , <Plug>Sneak_;
+nmap f <Plug>Sneak_f
+nmap F <Plug>Sneak_F
+nmap t <Plug>Sneak_t
+nmap T <Plug>Sneak_T
+let g:sneak#prompt = 'Sneak> '
 let g:sneak#s_next = 1
+
+" vim-matchup
+let g:matchup_transmute_enabled = 1
+
+" YouCompleteMe
+let g:ycm_key_list_select_completion = ['j']
+let g:ycm_key_list_previous_completion = ['k']
+
+" UltiSnips
+let g:UltiSnipsExpandTrigger = "<Tab>"
+let g:UltiSnipsJumpForwardTrigger = "<Tab>"
+let g:UltiSnipsJumpBackwardTrigger = "<S-Tab>"
 
 " rooter
 let g:rooter_change_directory_for_non_project_files = 'current'
@@ -98,7 +119,7 @@ let g:tagbar_autoshowtag = 1
 let g:tagbar_compact = 1
 let g:tagbar_expand = 1
 let g:tagbar_foldlevel = 1
-let g:tagbar_hide_nonpublic = 1
+let g:tagbar_hide_nonpublic = 0
 let g:tagbar_iconchars = ['▸', '▾']
 let g:tagbar_left = 1
 let g:tagbar_map_help = '?'
@@ -206,10 +227,10 @@ let g:airline#extensions#tabline#show_tab_type = 0
 autocmd BufDelete * call airline#extensions#tabline#buflist#invalidate()
 
 " ale
-let g:ale_echo_msg_format = '[%linter%] %s'
-let g:ale_linters = { 'go': ['go vet'], }
-let g:ale_lint_on_text_changed = 'never'
-let g:ale_sign_warning = '>>'
+" let g:ale_echo_msg_format = '[%linter%] %s'
+" let g:ale_linters = { 'go': ['go vet'], }
+" let g:ale_lint_on_text_changed = 'never'
+" let g:ale_sign_warning = '>>'
 
 " syntastic
 let g:syntastic_always_populate_loc_list = 1
