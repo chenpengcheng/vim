@@ -45,7 +45,7 @@ highlight VertSplit ctermfg=darkgray
 
 " leader
 let mapleader = ';'
-nmap <silent> <leader><leader> :noh<cr>
+nmap <silent> <leader><leader> :call HighlightOff()<cr>
 nmap <silent> <leader>b :edit #<cr>
 nmap <silent> <leader>j :call LocationNext()<cr>
 nmap <silent> <leader>k :call LocationPrev()<cr>
@@ -276,6 +276,12 @@ let g:jedi#rename_command = ""
 " tern_for_vim
 autocmd FileType javascript nmap <silent> <buffer> gd :TernDef<cr>
 autocmd FileType javascript nmap <silent> <buffer> K :TernDoc<cr>
+
+" highlight
+function! HighlightOff()
+  call g:sneak#cancel()
+  execute 'noh'
+endfunction
 
 " buffer
 function! BufferClose()
