@@ -58,6 +58,18 @@ nmap <silent> <leader>hk <Plug>GitGutterPrevHunk
 nmap <silent> <RightMouse> :call BufferExecute(':call BufferDelete()')<CR>
 nmap <silent> <2-LeftMouse> gd
 
+" highlight
+function! HighlightOff()
+  call g:sneak#cancel()
+  let @/ = ''
+endfunction
+
+" command mode
+cnoremap <C-a> <Home>
+cnoremap <C-e> <End>
+cnoremap <C-f> <Right>
+cnoremap <C-b> <Left>
+
 " ag
 nmap <silent> <F4> :grep! <cword><CR>:botright cw<CR>
 if executable('ag')
@@ -248,6 +260,7 @@ let g:go_list_type = 'locationlist'
 let g:go_highlight_space_tab_error = 1
 let g:go_highlight_trailing_whitespace_error = 1
 let g:go_list_height = 10
+let g:go_snippet_engine = ''
 let g:go_updatetime = 10
 
 " vim-javascript
@@ -276,12 +289,6 @@ let g:jedi#rename_command = ""
 " tern_for_vim
 autocmd FileType javascript nmap <silent> <buffer> gd :TernDef<CR>
 autocmd FileType javascript nmap <silent> <buffer> K :TernDoc<CR>
-
-" highlight
-function! HighlightOff()
-  call g:sneak#cancel()
-  let @/ = ''
-endfunction
 
 " buffer
 function! BufferClose()

@@ -18,6 +18,8 @@ patch -p1 < tagbar/001-fix-status-line-crash.patch
 cp nerdtree/custom.vim .vim/bundle/nerdtree/nerdtree_plugin/
 patch -p1 < nerdtree/001-disable-bookmark-deletion-confirmation.patch
 
+cp snippets/go.snippets .vim/bundle/vim-snippets/UltiSnips/
+
 rm -fr /tmp/.vim*
 mv $HOME/.vim* /tmp/
 cp -R .vim* $HOME/
