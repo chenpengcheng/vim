@@ -45,12 +45,12 @@ highlight VertSplit ctermfg=darkgray
 
 " leader
 let mapleader = ';'
-nmap <silent> <leader><leader> :call HighlightOff()<cr>
-nmap <silent> <leader>b :edit #<cr>
-nmap <silent> <leader>j :call LocationNext()<cr>
-nmap <silent> <leader>k :call LocationPrev()<cr>
+nmap <silent> <leader><leader> :call HighlightOff()<CR>
+nmap <silent> <leader>b :edit #<CR>
+nmap <silent> <leader>j :call LocationNext()<CR>
+nmap <silent> <leader>k :call LocationPrev()<CR>
 nmap <silent> <leader>x :call BufferClose()<CR>
-nmap <silent> <leader>X :qall<cr>
+nmap <silent> <leader>X :qall<CR>
 nmap <silent> <leader>hj <Plug>GitGutterNextHunk
 nmap <silent> <leader>hk <Plug>GitGutterPrevHunk
 
@@ -77,8 +77,8 @@ let g:sneak#s_next = 1
 let g:matchup_transmute_enabled = 1
 
 " YouCompleteMe
-let g:ycm_key_list_select_completion = ['j']
-let g:ycm_key_list_previous_completion = ['k']
+let g:ycm_key_list_select_completion = ['<C-n>']
+let g:ycm_key_list_previous_completion = ['<C-p>']
 
 " UltiSnips
 let g:UltiSnipsExpandTrigger = "<Tab>"
@@ -274,13 +274,13 @@ let g:jedi#usages_command = ""
 let g:jedi#rename_command = ""
 
 " tern_for_vim
-autocmd FileType javascript nmap <silent> <buffer> gd :TernDef<cr>
-autocmd FileType javascript nmap <silent> <buffer> K :TernDoc<cr>
+autocmd FileType javascript nmap <silent> <buffer> gd :TernDef<CR>
+autocmd FileType javascript nmap <silent> <buffer> K :TernDoc<CR>
 
 " highlight
 function! HighlightOff()
   call g:sneak#cancel()
-  execute 'noh'
+  let @/ = ''
 endfunction
 
 " buffer
