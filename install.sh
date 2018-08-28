@@ -1,7 +1,7 @@
 #!/bin/bash
 
 BUNDLE_DIR=".vim/bundle"
-PATCHED_PLUGINS="fzf.vim nerdtree tagbar"
+PATCHED_PLUGINS="fzf.vim nerdtree tagbar vim-snippets tern_for_vim"
 
 git submodule update --init --recursive
 
