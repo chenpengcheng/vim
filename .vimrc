@@ -49,6 +49,7 @@ nmap <silent> <leader><leader> :call HighlightOff()<CR>
 nmap <silent> <leader>b :edit #<CR>
 nmap <silent> <leader>j :call LocationNext()<CR>
 nmap <silent> <leader>k :call LocationPrev()<CR>
+nmap <silent> <leader>r :call RulerToggle()<CR>
 nmap <silent> <leader>x :call BufferClose()<CR>
 nmap <silent> <leader>X :qall<CR>
 nmap <silent> <leader>hj <Plug>GitGutterNextHunk
@@ -62,6 +63,15 @@ nmap <silent> <2-LeftMouse> gd
 function! HighlightOff()
   call g:sneak#cancel()
   let @/ = ''
+endfunction
+
+" ruler
+function! RulerToggle()
+  if &colorcolumn > 0
+    set colorcolumn=0
+  else
+    set colorcolumn=80
+  endif
 endfunction
 
 " command mode
