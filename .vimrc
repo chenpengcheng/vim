@@ -24,7 +24,7 @@ set autoread
 set shm+=A
 set updatetime=10
 set ttimeoutlen=10
-set fillchars+=vert:\ 
+set fillchars+=vert:│
 set directory^=/tmp//
 set mouse=a
 
@@ -41,7 +41,7 @@ highlight PmenuSel cterm=bold ctermfg=blue
 highlight! link Sneak Search
 highlight! link TagbarHighlight Normal
 highlight TagbarSignature ctermfg=gray
-highlight VertSplit ctermfg=darkgray
+highlight VertSplit ctermfg=black ctermbg=darkgray
 
 " leader
 let mapleader = ';'
