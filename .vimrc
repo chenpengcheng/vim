@@ -46,7 +46,11 @@ highlight VertSplit ctermfg=darkgray
 " leader
 let mapleader = ';'
 nmap <silent> <leader><leader> :call HighlightOff()<CR>
-nmap <silent> <leader>b :edit #<CR>
+nmap <silent> <leader>b :call BufferExecute(':edit #')<CR>
+nmap <silent> <leader>gd :call BufferExecute(':Gdiff')<CR>
+nmap <silent> <leader>go :call BufferExecute(':Gbrowse')<CR>
+vmap <silent> <leader>go :Gbrowse<CR>
+nmap <silent> <leader>gh :call BufferExecute(':Gblame')<CR>
 nmap <silent> <leader>j :call LocationNext()<CR>
 nmap <silent> <leader>k :call LocationPrev()<CR>
 nmap <silent> <leader>r :call RulerToggle()<CR>
@@ -74,12 +78,6 @@ function! RulerToggle()
   endif
 endfunction
 
-" command mode
-cnoremap <C-a> <Home>
-cnoremap <C-e> <End>
-cnoremap <C-f> <Right>
-cnoremap <C-b> <Left>
-
 " ag
 nmap <silent> <F4> :grep! <cword><CR>:botright cw<CR>
 if executable('ag')
@@ -97,15 +95,6 @@ let g:sneak#s_next = 1
 
 " vim-matchup
 let g:matchup_transmute_enabled = 1
-
-" YouCompleteMe
-let g:ycm_key_list_select_completion = ['<C-n>']
-let g:ycm_key_list_previous_completion = ['<C-p>']
-
-" UltiSnips
-let g:UltiSnipsExpandTrigger = "<Tab>"
-let g:UltiSnipsJumpForwardTrigger = "<Tab>"
-let g:UltiSnipsJumpBackwardTrigger = "<S-Tab>"
 
 " rooter
 let g:rooter_change_directory_for_non_project_files = 'current'
@@ -262,6 +251,15 @@ let g:syntastic_mode_map = { 'passive_filetypes': [ 'java' ] }
 let g:syntastic_go_checkers = [ 'govet' ]
 let g:syntastic_java_checkers = []
 let g:syntastic_python_checkers = [ 'flake8' ]
+
+" YouCompleteMe
+let g:ycm_key_list_select_completion = ['<C-n>']
+let g:ycm_key_list_previous_completion = ['<C-p>']
+
+" UltiSnips
+let g:UltiSnipsExpandTrigger = "<Tab>"
+let g:UltiSnipsJumpForwardTrigger = "<Tab>"
+let g:UltiSnipsJumpBackwardTrigger = "<S-Tab>"
 
 " vim-go
 let g:go_fmt_command = 'goimports'
