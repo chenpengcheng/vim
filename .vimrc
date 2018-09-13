@@ -250,6 +250,7 @@ let g:syntastic_check_on_wq = 0
 let g:syntastic_mode_map = { 'passive_filetypes': [ 'java' ] }
 let g:syntastic_go_checkers = [ 'govet' ]
 let g:syntastic_java_checkers = []
+let g:syntastic_javascript_checkers = [ 'eslint' ]
 let g:syntastic_python_checkers = [ 'flake8' ]
 
 " YouCompleteMe
@@ -284,6 +285,7 @@ let g:pymode_breakpoint_bind = '<leader>p'
 let g:pymode_options_colorcolumn = 0
 let g:pymode_lint_sort = ['E', 'C', 'I']
 let g:pymode_lint_cwindow = 0
+let g:pymode_run = 0
 
 " jedi-vim
 let g:jedi#documentation_command = "K"

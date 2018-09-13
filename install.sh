@@ -11,6 +11,8 @@ cd $BUNDLE_DIR/tern_for_vim
 npm install
 cd -
 
+npm install -g eslint eslint-config-prettier eslint-config-standard eslint-plugin-import eslint-plugin-node eslint-plugin-promise eslint-plugin-standard
+
 cp fzf/tags.py .vim/bundle/fzf.vim/bin/
 patch -p1 < fzf/001-python-tags.patch
 patch -p1 < tagbar/001-fix-status-line-crash.patch
