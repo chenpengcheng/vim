@@ -1,4 +1,5 @@
 # Snippets for Go
+# vim:ft=snippets:
 
 priority -50
 
@@ -91,11 +92,24 @@ snippet json "JSON field"
 \`json:"${1:displayName}"\`
 endsnippet
 
-# vim:ft=snippets:
-
 # error handling
 snippet err "Basic error handling" b
 if err != nil {
 	return ${1:nil}, err
 }
+endsnippet
+
+# pretty printing
+snippet pretty "Pretty printing" b
+func prettify(i interface{}) string {
+	b, err := json.MarshalIndent(i, "", "    ")
+	if err != nil {
+		return "<invalid value>"
+	}
+	return string(b)
+}
+endsnippet
+
+snippet print "Pretty printing" b
+fmt.Fprintln(os.Stderr, "XXX", prettify(${1:value}))
 endsnippet
