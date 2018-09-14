@@ -258,9 +258,9 @@ let g:ycm_key_list_select_completion = ['<C-n>']
 let g:ycm_key_list_previous_completion = ['<C-p>']
 
 " UltiSnips
-let g:UltiSnipsExpandTrigger = "<Tab>"
-let g:UltiSnipsJumpForwardTrigger = "<Tab>"
-let g:UltiSnipsJumpBackwardTrigger = "<S-Tab>"
+let g:UltiSnipsExpandTrigger = '<Tab>'
+let g:UltiSnipsJumpForwardTrigger = '<Tab>'
+let g:UltiSnipsJumpBackwardTrigger = '<S-Tab>'
 
 " vim-go
 let g:go_fmt_command = 'goimports'
@@ -276,9 +276,22 @@ let g:go_updatetime = 10
 let g:javascript_plugin_jsdoc = 1
 let g:javascript_plugin_ngdoc = 1
 let g:javascript_plugin_flow = 1
-let g:javascript_conceal_function = "⨍"
-let g:javascript_conceal_return = "←"
-let g:javascript_conceal_this = "@"
+let g:javascript_conceal_function = '⨍'
+let g:javascript_conceal_return = '←'
+let g:javascript_conceal_this = '@'
+
+" vim-prettier
+let g:prettier#autoformat = 0
+let g:prettier#quickfix_enabled = 0
+let g:prettier#config#semi = 'false'
+let g:prettier#config#single_quote = 'true'
+let g:prettier#config#bracket_spacing = 'true'
+let g:prettier#config#jsx_bracket_same_line = 'false'
+let g:prettier#config#arrow_parens = 'avoid'
+let g:prettier#config#trailing_comma = 'none'
+let g:prettier#config#parser = 'babylon'
+let g:prettier#autoformat = 0
+autocmd BufWritePre *.js,*.jsx Prettier
 
 " python-mode
 let g:pymode_breakpoint_bind = '<leader>p'
@@ -288,13 +301,13 @@ let g:pymode_lint_cwindow = 0
 let g:pymode_run = 0
 
 " jedi-vim
-let g:jedi#documentation_command = "K"
-let g:jedi#goto_command = "gd"
-let g:jedi#completions_command = ""
-let g:jedi#goto_assignments_command = ""
-let g:jedi#goto_definitions_command = ""
-let g:jedi#usages_command = ""
-let g:jedi#rename_command = ""
+let g:jedi#documentation_command = 'K'
+let g:jedi#goto_command = 'gd'
+let g:jedi#completions_command = ''
+let g:jedi#goto_assignments_command = ''
+let g:jedi#goto_definitions_command = ''
+let g:jedi#usages_command = ''
+let g:jedi#rename_command = ''
 
 " tern_for_vim
 autocmd FileType javascript nmap <silent> <buffer> gd :TernDef<CR>
