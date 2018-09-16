@@ -1,0 +1,16 @@
+{
+    "libs" : [
+        "browser",
+        "chai",
+        "ecmascript",
+        "jquery",
+        "react",
+        "underscore"
+    ],
+    "plugins": {
+        "node-express": {},
+        "node": {},
+        "es_modules": {}
+    },
+    "ecmaVersion": 6
+}

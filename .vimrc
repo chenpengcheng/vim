@@ -179,6 +179,15 @@ let g:tagbar_type_graphql = {
         \ 'type' : 't'
     \ },
 \ }
+let g:tagbar_type_javascript = {
+    \ 'kinds' : [
+        \ 'f:functions'
+    \ ],
+    \ 'scope2kind' : {
+        \ 'namespace' : 'f'
+    \ },
+    \ 'sro' : '.'
+\ }
 let g:tagbar_type_make = {
     \ 'kinds':[
         \ 'm:macros',
@@ -373,7 +382,7 @@ endfunction
 " start
 if  &diff != 1
     if &columns > 160
-        if &columns <= 180
+        if &columns <= 185
             let g:NERDTreeWinSize = 35
             let g:tagbar_width = 35
         endif
