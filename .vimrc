@@ -390,7 +390,7 @@ if  &diff != 1
         if argc() != 0
             autocmd VimEnter * execute 'wincmd h'
         endif
-        autocmd BufRead * nested :call tagbar#autoopen(0)
+        autocmd FileType * nested :call tagbar#autoopen(0)
     endif
 endif
 
