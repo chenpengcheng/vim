@@ -96,8 +96,8 @@ let g:sneak#s_next = 1
 " vim-matchup
 let g:matchup_delim_noskips = 2
 let g:matchup_matchparen_deferred = 1
-let g:matchup_matchparen_deferred_show_delay = &updatetime
-let g:matchup_matchparen_deferred_hide_delay = &updatetime
+let g:matchup_matchparen_deferred_show_delay = 250
+let g:matchup_matchparen_deferred_hide_delay = 250
 
 " rooter
 let g:rooter_change_directory_for_non_project_files = 'current'
