@@ -7,9 +7,10 @@ git submodule update --init --recursive
 
 $BUNDLE_DIR/YouCompleteMe/install.py --clang-completer --go-completer --java-completer
 
-npm install -g eslint eslint-config-prettier eslint-config-standard \
-    eslint-plugin-import eslint-plugin-node eslint-plugin-promise eslint-plugin-standard\
-    prettier tern-node-express
+npm install -g \
+    eslint eslint-config-prettier eslint-config-standard \
+    eslint-plugin-import eslint-plugin-node eslint-plugin-promise eslint-plugin-standard \
+    eslint-plugin-graphaql prettier tern-node-express
 
 cp -f tern_for_vim/.tern-project ~
 cd $BUNDLE_DIR/tern_for_vim

@@ -9,6 +9,7 @@ set clipboard=unnamedplus
 set ff=unix
 set number
 set relativenumber
+set concealcursor=nvc
 set conceallevel=1
 set completeopt-=preview
 set backspace=indent,eol,start
@@ -34,8 +35,8 @@ highlight CursorLine cterm=bold ctermbg=brown
 highlight EndOfBuffer ctermfg=black
 highlight LineNr ctermfg=darkmagenta
 highlight MatchParen cterm=bold ctermfg=black ctermbg=yellow
-highlight MatchWord cterm=bold ctermfg=blue ctermbg=black
-highlight MatchWordCur cterm=bold ctermfg=yellow ctermbg=brown
+highlight MatchWord cterm=bold ctermfg=blue
+highlight MatchWordCur cterm=bold ctermfg=black ctermbg=yellow
 highlight Pmenu ctermfg=cyan ctermbg=black
 highlight PmenuSel cterm=bold ctermfg=blue
 highlight! link Sneak Search
@@ -105,12 +106,14 @@ let g:rooter_resolve_links = 1
 let g:rooter_silent_chdir = 1
 
 " fzf
+nmap <silent> <F9> :call BufferExecute(':Buffers')<CR>
 nmap <silent> <F10> :call BufferExecute(':Files')<CR>
 nmap <silent> <F3> :call BufferExecute(':Tags')<CR>
 set rtp+=~/.fzf
 let $FZF_DEFAULT_COMMAND='ag --no-color --hidden -p ~/.vim/agignore -g ""'
 let g:fzf_layout = { 'down': '~20%' }
 let g:fzf_tags_command = 'ctags -R --excmd=number --exclude=.git --exclude=node_modules'
+let g:fzf_commits_log_options = '--graph --pretty=format:"%Cred%h%Creset %C(bold blue)<%an>%Creset %C(auto)%d%Creset%s %Cgreen(%cr)" --abbrev-commit --date=relative'
 
 " NERDTree
 nmap <silent> <F11> :call BufferExecute(':NERDTreeFind')<CR>
@@ -140,6 +143,8 @@ let g:tagbar_map_help = '?'
 let g:tagbar_show_linenumbers = 1
 let g:tagbar_type_go = {
     \ 'ctagstype' : 'go',
+    \ 'ctagsbin'  : 'gotags',
+    \ 'ctagsargs' : '-sort -silent',
     \ 'kinds'     : [
         \ 'p:package',
         \ 'n:interfaces',
@@ -160,9 +165,7 @@ let g:tagbar_type_go = {
     \ 'scope2kind' : {
         \ 'ctype' : 't',
         \ 'ntype' : 'n'
-    \ },
-    \ 'ctagsbin'  : 'gotags',
-    \ 'ctagsargs' : '-sort -silent'
+    \ }
 \ }
 let g:tagbar_type_graphql = {
     \ 'ctagstype' : 'graphql',
@@ -183,13 +186,15 @@ let g:tagbar_type_graphql = {
     \ },
 \ }
 let g:tagbar_type_javascript = {
+    \ 'ctagsbin' : '~/dev/src/github.com/chenpengcheng/jsctags/bin/jsctags',
     \ 'kinds' : [
+        \ 'v:variables',
+        \ 'c:classes',
         \ 'f:functions'
     \ ],
     \ 'scope2kind' : {
-        \ 'namespace' : 'f'
-    \ },
-    \ 'sro' : '.'
+        \ 'namespace' : "c"
+    \ }
 \ }
 let g:tagbar_type_make = {
     \ 'kinds':[
@@ -289,6 +294,7 @@ let g:javascript_plugin_jsdoc = 1
 let g:javascript_plugin_ngdoc = 1
 let g:javascript_plugin_flow = 1
 let g:javascript_conceal_function = '⨍'
+let g:javascript_conceal_null = "ø"
 let g:javascript_conceal_return = '←'
 let g:javascript_conceal_this = '@'
 
@@ -303,7 +309,7 @@ let g:prettier#config#arrow_parens = 'avoid'
 let g:prettier#config#trailing_comma = 'none'
 let g:prettier#config#parser = 'babylon'
 let g:prettier#autoformat = 0
-autocmd BufWritePre *.js,*.jsx Prettier
+autocmd BufWritePre *.js,*.jsx,*.graphql Prettier
 
 " python-mode
 let g:pymode_breakpoint_bind = '<leader>p'
@@ -382,7 +388,22 @@ function! LocationNext()
     endtry
 endfunction
 
+" profile
+function! ProfileBegin()
+profile start /tmp/vim.log
+profile func *
+profile file *
+endfunction
+
+function! ProfileEnd()
+:profile pause
+:noautocmd qall!
+:qall
+endfunction
+
 " start
+call ProfileBegin()
+
 if  &diff != 1
     if &columns > 160
         if &columns <= 185
