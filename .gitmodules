@@ -91,3 +91,6 @@
 [submodule ".vim/bundle/vim-prettier"]
 	path = .vim/bundle/vim-prettier
 	url = https://github.com/prettier/vim-prettier
+[submodule ".vim/bundle/vim-json"]
+	path = .vim/bundle/vim-json
+	url = https://github.com/elzr/vim-json
