@@ -126,6 +126,7 @@ let g:NERDTreeWinPos = 'right'
 let g:NERDTreeWinSize = 40
 let g:NERDTreeMapHelp = '<Nul>'
 let g:NERDTreeMapOpenVSplit = '<Nul>'
+let g:NERDTreeMouseMode = 3
 autocmd StdinReadPre * let s:std_in=1
 
 " Tagbar
@@ -141,6 +142,7 @@ let g:tagbar_iconchars = ['▸', '▾']
 let g:tagbar_left = 1
 let g:tagbar_map_help = '?'
 let g:tagbar_show_linenumbers = 1
+let g:tagbar_singleclick = 1
 let g:tagbar_type_go = {
     \ 'ctagstype' : 'go',
     \ 'ctagsbin'  : 'gotags',
@@ -297,6 +299,9 @@ let g:javascript_conceal_function = '⨍'
 let g:javascript_conceal_null = "ø"
 let g:javascript_conceal_return = '←'
 let g:javascript_conceal_this = '@'
+
+" vim-json
+let g:vim_json_syntax_concealcursor = 'nvc'
 
 " vim-prettier
 let g:prettier#autoformat = 0
