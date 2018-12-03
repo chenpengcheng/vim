@@ -94,3 +94,6 @@
 [submodule ".vim/bundle/vim-json"]
 	path = .vim/bundle/vim-json
 	url = https://github.com/elzr/vim-json
+[submodule ".vim/bundle/vim-solidity"]
+	path = .vim/bundle/vim-solidity
+	url = https://github.com/tomlion/vim-solidity.git
