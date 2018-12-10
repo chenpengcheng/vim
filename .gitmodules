@@ -97,3 +97,6 @@
 [submodule ".vim/bundle/vim-solidity"]
 	path = .vim/bundle/vim-solidity
 	url = https://github.com/tomlion/vim-solidity.git
+[submodule ".vim/bundle/vim-css-color"]
+	path = .vim/bundle/vim-css-color
+	url = https://github.com/ap/vim-css-color.git
