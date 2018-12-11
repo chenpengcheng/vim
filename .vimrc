@@ -218,6 +218,29 @@ let g:tagbar_type_markdown = {
     \ },
     \ 'sort': 0,
 \ }
+let g:tagbar_type_solidity = {                                                  
+    \ 'ctagstype': 'solidity',                                                  
+    \ 'kinds' : [                                                               
+        \ 'c:contracts',                                                        
+        \ 'e:events',                                                           
+        \ 'f:functions',                                                        
+        \ 'm:mappings',                                                         
+        \ 'v:varialbes',                                                        
+    \ ]                                                                         
+\ }
+let g:tagbar_type_typescript = {
+  \ 'ctagstype': 'typescript',
+  \ 'kinds': [
+    \ 'c:classes',
+    \ 'n:modules',
+    \ 'f:functions',
+    \ 'v:variables',
+    \ 'v:varlambdas',
+    \ 'm:members',
+    \ 'i:interfaces',
+    \ 'e:enums',
+  \ ]
+\ }
 
 function! TagbarFind()
     if &filetype !~ 'tagbar'
