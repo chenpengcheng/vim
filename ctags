@@ -1,0 +1,41 @@
+--exclude=tags
+--exclude=coverage
+--exclude=vendor
+--exclude=node_modules
+--exclude=bower_components
+
+--langdef=graphql
+--langmap=graphql:.graphql.gql
+--graphql-kinds=-e-v-q-t-m
+
+--regex-graphql=/^[ \t]*enum[ \t]+([_A-Za-z][_0-9A-Za-z]*)/\1/e,enum/
+--regex-graphql=/^[ \t]*input[ \t]+([_A-Za-z][_0-9A-Za-z]*)/\1/v,input/
+--regex-graphql=/^[ \t]*query[ \t]+([_A-Za-z][_0-9A-Za-z]*)/\1/q,query/
+--regex-graphql=/^[ \t]*type[ \t]+([_A-Za-z][_0-9A-Za-z]*)/\1/t,type/
+--regex-graphql=/^[ \t]*extend type[ \t]+([_A-Za-z][_0-9A-Za-z]*)/\1/t,type/
+--regex-graphql=/^[ \t]*mutation[ \t]+([_A-Za-z][_0-9A-Za-z]*)/\1/m,mutation/
+
+--regex-make=/^([^# \t]*):$/\1/t,target/
+
+--langdef=typescript
+--langmap=typescript:.ts
+--regex-typescript=/^[ \t]*(export)?[ \t]*class[ \t]+([a-zA-Z0-9_]+)/\2/c,classes/
+--regex-typescript=/^[ \t]*(export)?[ \t]*abstract class[ \t]+([a-zA-Z0-9_]+)/\2/a,abstract classes/
+--regex-typescript=/^[ \t]*(export)?[ \t]*module[ \t]+([a-zA-Z0-9_]+)/\2/n,modules/
+--regex-typescript=/^[ \t]*(export)?[ \t]*type[ \t]+([a-zA-Z0-9_]+)/\2/t,types/
+--regex-typescript=/^[ \t]*(export)?[ \t]*namespace[ \t]+([a-zA-Z0-9_]+)/\2/n,modules/
+--regex-typescript=/^[ \t]*(export)?[ \t]*function[ \t]+([a-zA-Z0-9_]+)/\2/f,functions/
+--regex-typescript=/^[ \t]*export[ \t]+var[ \t]+([a-zA-Z0-9_]+)/\1/v,variables/
+--regex-typescript=/^[ \t]*var[ \t]+([a-zA-Z0-9_]+)[ \t]*=[ \t]*function[ \t]*\(\)/\1/l,varlambdas/
+--regex-typescript=/^[ \t]*(export)?[ \t]*(public|private)[ \t]+(static|readonly|async)?[ \t]*([a-zA-Z0-9_]+)/\4/m,members/
+--regex-typescript=/^[ \t]*(export)?[ \t]*interface[ \t]+([a-zA-Z0-9_]+)/\2/i,interfaces/
+--regex-typescript=/^[ \t]*(export)?[ \t]*enum[ \t]+([a-zA-Z0-9_]+)/\2/e,enums/
+
+--langdef=solidity
+--langmap=solidity:.sol
+--regex-solidity=/^contract[ \t]+([a-zA-Z0-9_]+)/\1/c,contract/
+--regex-solidity=/[ \t]*function[ \t]+([a-zA-Z0-9_]+)/\1/f,function/
+--regex-solidity=/[ \t]*event[ \t]+([a-zA-Z0-9_]+)/\1/e,event/
+--regex-solidity=/[ \t]*(struct[ \t]+[a-zA-Z0-9_]+)([ \t]*\{)/\1/v,variable/
+--regex-solidity=/[ \t]*(enum[ \t]+[a-zA-Z0-9_]+)([ \t]*\{)/\1/v,variable/
+--regex-solidity=/[ \t]*mapping[ \t]+\(([a-zA-Z0-9_]+)[ \t]*=>[ \t]*([a-zA-Z0-9_]+)\)[ \t]+([a-zA-Z0-9_]+)/\3 (\1=>\2)/m,mapping/

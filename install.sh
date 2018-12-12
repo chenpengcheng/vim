@@ -36,3 +36,5 @@ for plugin in $PATCHED_PLUGINS; do
     git clean -f
     cd -
 done
+
+cp -f ctags $HOME/.ctags
