@@ -5,7 +5,7 @@ syntax on
 filetype plugin indent on
 
 set t_Co=256
-set clipboard=unnamedplus
+set clipboard=unnamed
 set ff=unix
 set number
 set relativenumber
@@ -218,28 +218,32 @@ let g:tagbar_type_markdown = {
     \ },
     \ 'sort': 0,
 \ }
-let g:tagbar_type_solidity = {                                                  
-    \ 'ctagstype': 'solidity',                                                  
-    \ 'kinds' : [                                                               
-        \ 'c:contracts',                                                        
-        \ 'e:events',                                                           
-        \ 'f:functions',                                                        
-        \ 'm:mappings',                                                         
-        \ 'v:varialbes',                                                        
-    \ ]                                                                         
-\ }
+let g:tagbar_type_solidity = {
+    \ 'ctagstype': 'solidity',
+    \ 'kinds' : [
+        \ 'c:contracts',
+        \ 'e:events',
+        \ 'f:functions',
+        \ 'm:mappings',
+        \ 'v:variables',
+    \ ]
 let g:tagbar_type_typescript = {
-  \ 'ctagstype': 'typescript',
+  \ 'ctagsbin' : 'tstags',
+  \ 'ctagsargs' : '-f-',
   \ 'kinds': [
-    \ 'c:classes',
-    \ 'n:modules',
-    \ 'f:functions',
-    \ 'v:variables',
-    \ 'v:varlambdas',
-    \ 'm:members',
-    \ 'i:interfaces',
-    \ 'e:enums',
-  \ ]
+    \ 'e:enums:0:1',
+    \ 'f:function:0:1',
+    \ 't:typealias:0:1',
+    \ 'M:Module:0:1',
+    \ 'I:import:0:1',
+    \ 'i:interface:0:1',
+    \ 'C:class:0:1',
+    \ 'm:method:0:1',
+    \ 'p:property:0:1',
+    \ 'v:variable:0:1',
+    \ 'c:const:0:1',
+  \ ],
+  \ 'sort' : 0
 \ }
 
 function! TagbarFind()
