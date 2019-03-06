@@ -341,7 +341,7 @@ let g:prettier#config#arrow_parens = 'avoid'
 let g:prettier#config#trailing_comma = 'none'
 let g:prettier#config#parser = 'babylon'
 let g:prettier#autoformat = 0
-autocmd BufWritePre *.js,*.jsx,*.graphql Prettier
+autocmd BufWritePre *.js,*.jsx,*.ts,*.tsx,*.graphql Prettier
 
 " python-mode
 let g:pymode_breakpoint_bind = '<leader>p'

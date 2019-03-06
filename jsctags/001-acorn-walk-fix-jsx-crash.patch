@@ -1,0 +1,19 @@
+diff --git a/acorn-walk/src/index.js b/acorn-walk/src/index.js
+--- a/acorn-walk/dist/walk.js
++++ b/acorn-walk/dist/walk.js
+@@ -438,6 +438,15 @@
+   c(node.value, st, "Expression");
+ };
+ 
++
++base.JSXText = base.JSXExpressionContainer = ignore
++base.JSXElement = function(node, st, c) {
++  for (var i = 0, list = node.children; i < list.length; i += 1) {
++    var elt = list[i];
++    if (elt) { c(elt, st, elt.type); }
++  }
++}
++
+ exports.simple = simple;
+ exports.ancestor = ancestor;
+ exports.recursive = recursive;

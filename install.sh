@@ -5,7 +5,7 @@ PATCHED_PLUGINS="fzf.vim nerdtree tagbar vim-snippets tern_for_vim"
 
 git submodule update --init --recursive
 
-$BUNDLE_DIR/YouCompleteMe/install.py --clang-completer --go-completer --java-completer -ts-completer
+$BUNDLE_DIR/YouCompleteMe/install.py --clang-completer --go-completer --java-completer --ts-completer
 
 sudo npm install -g \
     eslint eslint-config-prettier eslint-config-standard \
