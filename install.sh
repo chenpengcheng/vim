@@ -1,7 +1,7 @@
 #!/bin/bash
 
 BUNDLE_DIR=".vim/bundle"
-PATCHED_PLUGINS="fzf.vim nerdtree tagbar vim-snippets tern_for_vim"
+PATCHED_PLUGINS="fzf.vim nerdtree tagbar vim-snippets"
 
 git submodule update --init --recursive
 
@@ -10,13 +10,8 @@ $BUNDLE_DIR/YouCompleteMe/install.py --clang-completer --go-completer --java-com
 sudo npm install -g \
     eslint eslint-config-prettier eslint-config-standard \
     eslint-plugin-import eslint-plugin-node eslint-plugin-promise eslint-plugin-standard \
-    eslint-plugin-graphql prettier tern-node-express
+    eslint-plugin-graphql prettier
     git+https://github.com/Perlence/tstags.git
-
-cp -f tern_for_vim/.tern-project ~
-cd $BUNDLE_DIR/tern_for_vim
-npm install
-cd -
 
 cp fzf/tags.py .vim/bundle/fzf.vim/bin/
 patch -p1 < fzf/001-python-tags.patch
