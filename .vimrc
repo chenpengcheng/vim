@@ -225,8 +225,9 @@ let g:tagbar_type_solidity = {
         \ 'e:events',
         \ 'f:functions',
         \ 'm:mappings',
-        \ 'v:variables',
+        \ 'v:variables'
     \ ]
+\ }
 let g:tagbar_type_typescript = {
   \ 'ctagsbin' : 'tstags',
   \ 'ctagsargs' : '-f-',
