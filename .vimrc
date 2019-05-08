@@ -374,12 +374,19 @@ let g:prettier#autoformat = 0
 autocmd BufWritePre *.js,*.jsx,*.ts,*.tsx,*.graphql Prettier
 
 " python-mode
+let g:pymode_breakpoint = 0
 let g:pymode_breakpoint_bind = '<leader>p'
 let g:pymode_folding = 0
-let g:pymode_lint_sort = ['E', 'C', 'I']
 let g:pymode_lint_cwindow = 0
+let g:pymode_lint_on_fly = 1
+let g:pymode_lint_sort = ['E', 'C', 'I']
+let g:pymode_python = 'python3'
 let g:pymode_options_colorcolumn = 0
 let g:pymode_run = 0
+autocmd BufWritePre *.py PymodeLintAuto
+
+" vim-isort
+autocmd BufWritePre *.py Isort
 
 " jedi-vim
 let g:jedi#documentation_command = 'K'

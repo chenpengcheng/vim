@@ -118,3 +118,6 @@
 [submodule ".vim/bundle/alchemist.vim"]
 	path = .vim/bundle/alchemist.vim
 	url = https://github.com/slashmili/alchemist.vim.git
+[submodule ".vim/bundle/vim-isort"]
+	path = .vim/bundle/vim-isort
+	url = https://github.com/fisadev/vim-isort.git
