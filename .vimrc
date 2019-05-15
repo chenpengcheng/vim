@@ -380,8 +380,9 @@ let g:pymode_folding = 0
 let g:pymode_lint_cwindow = 0
 let g:pymode_lint_on_fly = 1
 let g:pymode_lint_sort = ['E', 'C', 'I']
-let g:pymode_python = 'python3'
 let g:pymode_options_colorcolumn = 0
+let g:pymode_python = 'python3'
+let g:pymode_rope = 0
 let g:pymode_run = 0
 autocmd BufWritePre *.py PymodeLintAuto
 
