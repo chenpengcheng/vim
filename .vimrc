@@ -330,13 +330,17 @@ let g:syntastic_python_checkers = [ 'flake8' ]
 " YouCompleteMe
 let g:ycm_key_list_select_completion = ['<C-n>']
 let g:ycm_key_list_previous_completion = ['<C-p>']
-autocmd FileType javascript,typescript nmap <silent> <buffer> gd :YcmCompleter GoTo<CR>
-autocmd FileType javascript,typescript nmap <silent> <buffer> K :YcmCompleter GetDoc<CR>
+autocmd FileType c,cpp,javascript,typescript nmap <silent> <buffer> gd :YcmCompleter GoTo<CR>
+autocmd FileType c,cpp,javascript,typescript nmap <silent> <buffer> K :YcmCompleter GetDoc<CR>
 
 " UltiSnips
 let g:UltiSnipsExpandTrigger = '<Tab>'
 let g:UltiSnipsJumpForwardTrigger = '<Tab>'
 let g:UltiSnipsJumpBackwardTrigger = '<S-Tab>'
+
+" vim-elixir
+let g:alchemist_tag_map = 'gd'
+let g:alchemist#elixir_erlang_src = "/Users/pengchengchen/dev/src/github.com/elixir-lang"
 
 " vim-go
 let g:go_fmt_command = 'goimports'
