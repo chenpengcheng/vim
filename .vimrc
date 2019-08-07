@@ -343,12 +343,14 @@ let g:alchemist_tag_map = 'gd'
 let g:alchemist#elixir_erlang_src = "/Users/pengchengchen/dev/src/github.com/elixir-lang"
 
 " vim-go
+let g:go_def_mode='gopls'
 let g:go_fmt_command = 'goimports'
 let g:go_fmt_fail_silently = 1
-let g:go_list_type = 'locationlist'
+let g:go_info_mode='gopls'
 let g:go_highlight_space_tab_error = 1
 let g:go_highlight_trailing_whitespace_error = 1
 let g:go_list_height = 10
+let g:go_list_type = 'locationlist'
 let g:go_snippet_engine = ''
 let g:go_updatetime = 10
 
