@@ -121,3 +121,6 @@
 [submodule ".vim/bundle/vim-isort"]
 	path = .vim/bundle/vim-isort
 	url = https://github.com/fisadev/vim-isort.git
+[submodule ".vim/bundle/vim-terraform"]
+	path = .vim/bundle/vim-terraform
+	url = https://github.com/hashivim/vim-terraform.git
