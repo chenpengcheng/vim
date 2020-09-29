@@ -490,6 +490,8 @@ if  &diff != 1
         endif
         autocmd FileType * nested :call tagbar#autoopen(0)
     endif
+
+    autocmd BufNewFile,BufRead *.mql5 set syntax=cpp
 endif
 
 " workarounds
