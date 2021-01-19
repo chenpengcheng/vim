@@ -61,6 +61,9 @@ nmap <silent> <leader>X :qall<CR>
 nmap <silent> <leader>hj <Plug>GitGutterNextHunk
 nmap <silent> <leader>hk <Plug>GitGutterPrevHunk
 
+" backtrack
+nmap `` <C-o>
+
 " mouse
 nmap <silent> <RightMouse> :call BufferExecute(':call BufferDelete()')<CR>
 nmap <silent> <2-LeftMouse> gd
