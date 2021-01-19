@@ -39,6 +39,7 @@ highlight MatchWord cterm=bold ctermfg=blue
 highlight MatchWordCur cterm=bold ctermfg=black ctermbg=yellow
 highlight Pmenu ctermfg=cyan ctermbg=black
 highlight PmenuSel cterm=bold ctermfg=blue
+highlight! link SignColumn LineNr
 highlight! link Sneak Search
 highlight! link TagbarHighlight Normal
 highlight TagbarSignature ctermfg=gray
@@ -319,8 +320,8 @@ autocmd BufDelete * call airline#extensions#tabline#buflist#invalidate()
 
 " syntastic
 let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
+let g:syntastic_check_on_open = 0
+let g:syntastic_check_on_wq = 1
 let g:syntastic_mode_map = { 'passive_filetypes': [ 'java' ] }
 let g:syntastic_go_checkers = [ 'go' ]
 let g:syntastic_go_go_build_args = "-o /dev/null"
